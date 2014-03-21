@@ -22,6 +22,8 @@
 #define GCC_AARCH64_LINUX_H
 
 #define GLIBC_DYNAMIC_LINKER "/lib/ld-linux-aarch64%{mbig-endian:_be}.so.1"
+#undef BIONIC_DYNAMIC_LINKER // Unset the /system/bin/linker default
+#define BIONIC_DYNAMIC_LINKER "/system/bin/linker64"
 
 #define CPP_SPEC "%{pthread:-D_REENTRANT}"
 
@@ -41,7 +43,29 @@
   do						\
     {						\
 	GNU_USER_TARGET_OS_CPP_BUILTINS();	\
+	ANDROID_TARGET_OS_CPP_BUILTINS();	\
     }						\
   while (0)
+
+#undef  CC1_SPEC
+#define CC1_SPEC							\
+  LINUX_OR_ANDROID_CC (GNU_USER_TARGET_CC1_SPEC,			\
+		      GNU_USER_TARGET_CC1_SPEC " " ANDROID_CC1_SPEC("-fpic"))
+
+#define CC1PLUS_SPEC \
+  LINUX_OR_ANDROID_CC ("", ANDROID_CC1PLUS_SPEC)
+
+#undef  LIB_SPEC
+#define LIB_SPEC							\
+  LINUX_OR_ANDROID_LD (GNU_USER_TARGET_LIB_SPEC,			\
+		       GNU_USER_TARGET_NO_PTHREADS_LIB_SPEC " " ANDROID_LIB_SPEC)
+
+#undef	STARTFILE_SPEC
+#define STARTFILE_SPEC \
+  LINUX_OR_ANDROID_LD (GNU_USER_TARGET_STARTFILE_SPEC, ANDROID_STARTFILE_SPEC)
+
+#undef	ENDFILE_SPEC
+#define ENDFILE_SPEC \
+  LINUX_OR_ANDROID_LD (GNU_USER_TARGET_ENDFILE_SPEC, ANDROID_ENDFILE_SPEC)
 
 #endif  /* GCC_AARCH64_LINUX_H */

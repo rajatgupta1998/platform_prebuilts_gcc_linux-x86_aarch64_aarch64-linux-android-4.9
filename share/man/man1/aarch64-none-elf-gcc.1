@@ -124,7 +124,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2014-03-03" "gcc-4.9.0" "GNU"
+.TH GCC 1 "2014-03-21" "gcc-4.9.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1731,8 +1731,7 @@ additional defect reports. Same as \fB\-ansi\fR for \*(C+ code.
 .IP "\fBc++0x\fR" 4
 .IX Item "c++0x"
 .PD
-The 2011 \s-1ISO\s0 \*(C+ standard plus amendments.  Support for \*(C+11 is still
-experimental, and may change in incompatible ways in future releases.
+The 2011 \s-1ISO\s0 \*(C+ standard plus amendments.
 The name \fBc++0x\fR is deprecated.
 .IP "\fBgnu++11\fR" 4
 .IX Item "gnu++11"
@@ -1740,8 +1739,7 @@ The name \fBc++0x\fR is deprecated.
 .IP "\fBgnu++0x\fR" 4
 .IX Item "gnu++0x"
 .PD
-\&\s-1GNU\s0 dialect of \fB\-std=c++11\fR. Support for \*(C+11 is still
-experimental, and may change in incompatible ways in future releases.
+\&\s-1GNU\s0 dialect of \fB\-std=c++11\fR.
 The name \fBgnu++0x\fR is deprecated.
 .IP "\fBc++1y\fR" 4
 .IX Item "c++1y"
@@ -1880,12 +1878,11 @@ are ignored.
 Enable the usage of Cilk Plus language extension features for C/\*(C+.
 When the option \fB\-fcilkplus\fR is specified, enable the usage of
 the Cilk Plus Language extension features for C/\*(C+.  The present
-implementation follows \s-1ABI\s0 version 0.9.  This is an experimental
+implementation follows \s-1ABI\s0 version 1.2.  This is an experimental
 feature that is only partially complete, and whose interface may
 change in future versions of \s-1GCC\s0 as the official specification
-changes.  Currently only the array notation feature of the language
-specification has been implemented.  More features will be implemented
-in subsequent release cycles.
+changes.  Currently, all features but \f(CW\*(C`_Cilk_for\*(C'\fR have been
+implemented.
 .IP "\fB\-fgnu\-tm\fR" 4
 .IX Item "-fgnu-tm"
 When the option \fB\-fgnu\-tm\fR is specified, the compiler
@@ -7789,8 +7786,9 @@ file.  When the object files are linked together, all the function
 bodies are read from these \s-1ELF\s0 sections and instantiated as if they
 had been part of the same translation unit.
 .Sp
-To use the link-time optimizer, \fB\-flto\fR needs to be specified at
-compile time and during the final link.  For example:
+To use the link-time optimizer, \fB\-flto\fR and optimization
+options should be specified at compile time and during the final link.
+For example:
 .Sp
 .Vb 3
 \&        gcc \-c \-O2 \-flto foo.c
@@ -7820,8 +7818,15 @@ merges them together into a single \s-1GIMPLE\s0 representation and optimizes
 them as usual to produce \fImyprog\fR.
 .Sp
 The only important thing to keep in mind is that to enable link-time
-optimizations the \fB\-flto\fR flag needs to be passed to both the
-compile and the link commands.
+optimizations you need to use the \s-1GCC\s0 driver to perform the link-step.
+\&\s-1GCC\s0 then automatically performs link-time optimization if any of the
+objects involved were compiled with the \fB\-flto\fR.  You generally
+should specify the optimization options to be used for link-time
+optimization though \s-1GCC\s0 will try to be clever at guessing an
+optimization level to use from the options used at compile-time
+if you fail to specify one at link-time.  You can always override
+the automatic decision to do link-time optimization at link-time
+by passing \fB\-fno\-lto\fR to the link command.
 .Sp
 To make whole program optimization effective, it is necessary to make
 certain whole program assumptions.  The compiler needs to know
@@ -7833,28 +7838,31 @@ the linker plugin is not available, \fB\-fwhole\-program\fR should be
 used to allow the compiler to make these assumptions, which leads
 to more aggressive optimization decisions.
 .Sp
-Note that when a file is compiled with \fB\-flto\fR, the generated
-object file is larger than a regular object file because it 
-contains \s-1GIMPLE\s0 bytecodes and the usual final code.  This means that
+When \fB\-fuse\-linker\-plugin\fR is not enabled then, when a file is
+compiled with \fB\-flto\fR, the generated object file is larger than
+a regular object file because it contains \s-1GIMPLE\s0 bytecodes and the usual
+final code (see \fB\-ffat\-lto\-objects\fR.  This means that
 object files with \s-1LTO\s0 information can be linked as normal object
-files; if \fB\-flto\fR is not passed to the linker, no
-interprocedural optimizations are applied.
+files; if \fB\-fno\-lto\fR is passed to the linker, no
+interprocedural optimizations are applied.  Note that when
+\&\fB\-fno\-fat\-lto\-objects\fR is enabled the compile-stage is faster
+but you cannot perform a regular, non-LTO link on them.
 .Sp
 Additionally, the optimization flags used to compile individual files
 are not necessarily related to those used at link time.  For instance,
 .Sp
 .Vb 3
-\&        gcc \-c \-O0 \-flto foo.c
-\&        gcc \-c \-O0 \-flto bar.c
-\&        gcc \-o myprog \-flto \-O3 foo.o bar.o
+\&        gcc \-c \-O0 \-ffat\-lto\-objects \-flto foo.c
+\&        gcc \-c \-O0 \-ffat\-lto\-objects \-flto bar.c
+\&        gcc \-o myprog \-O3 foo.o bar.o
 .Ve
 .Sp
 This produces individual object files with unoptimized assembler
 code, but the resulting binary \fImyprog\fR is optimized at
-\&\fB\-O3\fR.  If, instead, the final binary is generated without
-\&\fB\-flto\fR, then \fImyprog\fR is not optimized.
+\&\fB\-O3\fR.  If, instead, the final binary is generated with
+\&\fB\-fno\-lto\fR, then \fImyprog\fR is not optimized.
 .Sp
-When producing the final binary with \fB\-flto\fR, \s-1GCC\s0 only
+When producing the final binary, \s-1GCC\s0 only
 applies link-time optimizations to those files that contain bytecode.
 Therefore, you can mix and match object files and libraries with
 \&\s-1GIMPLE\s0 bytecodes and final object code.  \s-1GCC\s0 automatically selects
@@ -7863,28 +7871,45 @@ further processing.
 .Sp
 There are some code generation flags preserved by \s-1GCC\s0 when
 generating bytecodes, as they need to be used during the final link
-stage.  Currently, the following options are saved into the \s-1GIMPLE\s0
-bytecode files: \fB\-fPIC\fR, \fB\-fcommon\fR and all the
-\&\fB\-m\fR target flags.
+stage.  Generally options specified at link-time override those
+specified at compile-time.
 .Sp
-At link time, these options are read in and reapplied.  Note that the
-current implementation makes no attempt to recognize conflicting
-values for these options.  If different files have conflicting option
-values (e.g., one file is compiled with \fB\-fPIC\fR and another
-isn't), the compiler simply uses the last value read from the
-bytecode files.  It is recommended, then, that you compile all the files
-participating in the same link with the same options.
+If you do not specify an optimization level option \fB\-O\fR at
+link-time then \s-1GCC\s0 will compute one based on the optimization levels
+used when compiling the object files.  The highest optimization
+level will win here.
+.Sp
+Currently, the following options and their setting are take from
+the first object file that explicitely specified it: 
+\&\fB\-fPIC\fR, \fB\-fpic\fR, \fB\-fpie\fR, \fB\-fcommon\fR,
+\&\fB\-fexceptions\fR, \fB\-fnon\-call\-exceptions\fR, \fB\-fgnu\-tm\fR
+and all the \fB\-m\fR target flags.
+.Sp
+Certain \s-1ABI\s0 changing flags are required to match in all compilation-units
+and trying to override this at link-time with a conflicting value
+is ignored.  This includes options such as \fB\-freg\-struct\-return\fR
+and \fB\-fpcc\-struct\-return\fR.
+.Sp
+Other options such as \fB\-ffp\-contract\fR, \fB\-fno\-strict\-overflow\fR,
+\&\fB\-fwrapv\fR, \fB\-fno\-trapv\fR or \fB\-fno\-strict\-aliasing\fR
+are passed through to the link stage and merged conservatively for
+conflicting translation units.  Specifically
+\&\fB\-fno\-strict\-overflow\fR, \fB\-fwrapv\fR and \fB\-fno\-trapv\fR take
+precedence and for example \fB\-ffp\-contract=off\fR takes precedence
+over \fB\-ffp\-contract=fast\fR.  You can override them at linke-time.
+.Sp
+It is recommended that you compile all the files participating in the
+same link with the same options and also specify those options at
+link time.
 .Sp
 If \s-1LTO\s0 encounters objects with C linkage declared with incompatible
 types in separate translation units to be linked together (undefined
 behavior according to \s-1ISO\s0 C99 6.2.7), a non-fatal diagnostic may be
-issued.  The behavior is still undefined at run time.
+issued.  The behavior is still undefined at run time.  Similar
+diagnostics may be raised for other languages.
 .Sp
 Another feature of \s-1LTO\s0 is that it is possible to apply interprocedural
-optimizations on files written in different languages.  This requires
-support in the language front end.  Currently, the C, \*(C+ and
-Fortran front ends are capable of emitting \s-1GIMPLE\s0 bytecodes, so
-something like this should work:
+optimizations on files written in different languages:
 .Sp
 .Vb 4
 \&        gcc \-c \-flto foo.c
@@ -7897,8 +7922,7 @@ Notice that the final link is done with \fBg++\fR to get the \*(C+
 runtime libraries and \fB\-lgfortran\fR is added to get the Fortran
 runtime libraries.  In general, when mixing languages in \s-1LTO\s0 mode, you
 should use the same link command options as when mixing languages in a
-regular (non-LTO) compilation; all you need to add is \fB\-flto\fR to
-all the compile and link commands.
+regular (non-LTO) compilation.
 .Sp
 If object files containing \s-1GIMPLE\s0 bytecode are stored in a library archive, say
 \&\fIlibfoo.a\fR, it is possible to extract and use them in an \s-1LTO\s0 link if you
@@ -7930,11 +7954,11 @@ The current implementation of \s-1LTO\s0 makes no
 attempt to generate bytecode that is portable between different
 types of hosts.  The bytecode files are versioned and there is a
 strict version check, so bytecode files generated in one version of
-\&\s-1GCC\s0 will not work with an older/newer version of \s-1GCC\s0.
+\&\s-1GCC\s0 will not work with an older or newer version of \s-1GCC\s0.
 .Sp
 Link-time optimization does not work well with generation of debugging
 information.  Combining \fB\-flto\fR with
-\&\fB\-g\fR is currently experimental and expected to produce wrong
+\&\fB\-g\fR is currently experimental and expected to produce unexpected
 results.
 .Sp
 If you specify the optional \fIn\fR, the optimization and code
@@ -7949,8 +7973,6 @@ is useful when the Makefile calling \s-1GCC\s0 is already executing in parallel.
 You must prepend a \fB+\fR to the command recipe in the parent Makefile
 for this to work.  This option likely only works if \fB\s-1MAKE\s0\fR is
 \&\s-1GNU\s0 make.
-.Sp
-This option is disabled by default.
 .IP "\fB\-flto\-partition=\fR\fIalg\fR" 4
 .IX Item "-flto-partition=alg"
 Specify the partitioning algorithm used by the link-time optimizer.
@@ -11676,7 +11698,7 @@ The default for this option is@tie{}\f(CW\*(C`avr2\*(C'\fR.
 .el .IP "\f(CWavrxmega2\fR" 4
 .IX Item "avrxmega2"
 \&\*(L"\s-1XMEGA\s0\*(R" devices with more than 8@tie{}KiB and up to 64@tie{}KiB of program memory.
-\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmxt112sl\*(C'\fR, \f(CW\*(C`atmxt224\*(C'\fR, \f(CW\*(C`atmxt224e\*(C'\fR, \f(CW\*(C`atmxt336s\*(C'\fR, \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16a4u\*(C'\fR, \f(CW\*(C`atxmega16c4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega16x1\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32a4u\*(C'\fR, \f(CW\*(C`atxmega32c4\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32e5\*(C'\fR, \f(CW\*(C`atxmega32x1\*(C'\fR.
+\&\fImcu\fR\f(CW@tie\fR{}= \f(CW\*(C`atmxt112sl\*(C'\fR, \f(CW\*(C`atmxt224\*(C'\fR, \f(CW\*(C`atmxt224e\*(C'\fR, \f(CW\*(C`atmxt336s\*(C'\fR, \f(CW\*(C`atxmega16a4\*(C'\fR, \f(CW\*(C`atxmega16a4u\*(C'\fR, \f(CW\*(C`atxmega16c4\*(C'\fR, \f(CW\*(C`atxmega16d4\*(C'\fR, \f(CW\*(C`atxmega32a4\*(C'\fR, \f(CW\*(C`atxmega32a4u\*(C'\fR, \f(CW\*(C`atxmega32c4\*(C'\fR, \f(CW\*(C`atxmega32d4\*(C'\fR, \f(CW\*(C`atxmega32e5\*(C'\fR, \f(CW\*(C`atxmega32x1\*(C'\fR.
 .ie n .IP """avrxmega4""" 4
 .el .IP "\f(CWavrxmega4\fR" 4
 .IX Item "avrxmega4"
@@ -17104,17 +17126,24 @@ post\- fixed with \f(CW\*(C`_\|_\*(C'\fR.  This in turn will be used by the
 \&\f(CW\*(C`msp430.h\*(C'\fR header file to select an \s-1MCU\s0 specific supplimentary
 header file.
 .Sp
-In addition two scripts will be added to the linker command line:
-\&\f(CW\*(C`memory.ld\*(C'\fR and \f(CW\*(C`peripherals.ld\*(C'\fR, with a search path based
-upon the \s-1MCU\s0 name.
+The option also sets the \s-1ISA\s0 to use.  If the \s-1MCU\s0 name is one that is
+known to only support the 430 \s-1ISA\s0 then that is selected, otherwise the
+430X \s-1ISA\s0 is selected.  A generic \s-1MCU\s0 name of \f(CW\*(C`msp430\*(C'\fR can also be
+used to select the 430 \s-1ISA\s0.  Similarly the generic \f(CW\*(C`msp430x\*(C'\fR \s-1MCU\s0
+name will select the 430X \s-1ISA\s0.
+.Sp
+In addition an \s-1MCU\s0 specific linker script will be added to the linker
+command line.  The script's name is the name of the \s-1MCU\s0 with
+\&\f(CW\*(C`.ld\*(C'\fR appended.  Thus specifying \fB\-mmcu=xxx\fR on the gcc
+command line will define the C preprocessor symbol \f(CW\*(C`_\|_XXX_\|_\*(C'\fR and
+cause the linker to search for a script called \fIxxx.ld\fR.
 .Sp
 This option is also passed on to the assembler.
 .IP "\fB\-mcpu=\fR" 4
 .IX Item "-mcpu="
-Specific the \s-1ISA\s0 to use.  Accepted values are \f(CW\*(C`msp430\*(C'\fR,
-\&\f(CW\*(C`msp430x\*(C'\fR and \f(CW\*(C`msp430xv2\*(C'\fR.  This option is needed in order
-to ensure that the correct instructions are generated and that the
-correct libraries are linked in.
+Specifies the \s-1ISA\s0 to use.  Accepted values are \f(CW\*(C`msp430\*(C'\fR,
+\&\f(CW\*(C`msp430x\*(C'\fR and \f(CW\*(C`msp430xv2\*(C'\fR.  This option is deprecated.  The
+\&\fB\-mmcu=\fR option should be used to select the \s-1ISA\s0.
 .IP "\fB\-msim\fR" 4
 .IX Item "-msim"
 Link to the simulator runtime libraries and linker script.  Overrides

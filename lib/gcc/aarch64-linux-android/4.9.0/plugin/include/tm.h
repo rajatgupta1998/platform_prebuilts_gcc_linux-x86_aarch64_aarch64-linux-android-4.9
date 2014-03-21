@@ -1,6 +1,5 @@
 #ifndef GCC_TM_H
 #define GCC_TM_H
-#define TARGET_CPU_DEFAULT (TARGET_CPU_generic)
 #ifndef LIBC_GLIBC
 # define LIBC_GLIBC 1
 #endif
@@ -25,6 +24,7 @@
 # include "config/elfos.h"
 # include "config/gnu-user.h"
 # include "config/linux.h"
+# include "config/linux-android.h"
 # include "config/glibc-stdint.h"
 # include "config/aarch64/aarch64-elf.h"
 # include "config/aarch64/aarch64-linux.h"
