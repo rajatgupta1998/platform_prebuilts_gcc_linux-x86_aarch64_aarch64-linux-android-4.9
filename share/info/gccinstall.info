@@ -3389,6 +3389,16 @@ msp430-*-elf
 TI MSP430 processor.  This configuration is intended for embedded
 systems.
 
+nds32le-*-elf
+=============
+
+Andes NDS32 target in little endian mode.
+
+nds32be-*-elf
+=============
+
+Andes NDS32 target in big endian mode.
+
 powerpc-*-*
 ===========
 
@@ -4653,46 +4663,48 @@ Ref: mips-sgi-irix5145566
 Ref: mips-sgi-irix6145646
 Ref: moxie-x-elf145833
 Ref: msp430-x-elf145880
-Ref: powerpc-x-x145983
-Ref: powerpc-x-darwin146188
-Ref: powerpc-x-elf146682
-Ref: powerpc-x-linux-gnu146767
-Ref: powerpc-x-netbsd146862
-Ref: powerpc-x-eabisim146950
-Ref: powerpc-x-eabi147076
-Ref: powerpcle-x-elf147152
-Ref: powerpcle-x-eabisim147244
-Ref: powerpcle-x-eabi147377
-Ref: rl78-x-elf147460
-Ref: rx-x-elf147566
-Ref: s390-x-linux147765
-Ref: s390x-x-linux147837
-Ref: s390x-ibm-tpf147924
-Ref: x-x-solaris2148055
-Ref: sparc-x-x152975
-Ref: sparc-sun-solaris2153477
-Ref: sparc-sun-solaris210156231
-Ref: sparc-x-linux156607
-Ref: sparc64-x-solaris2156832
-Ref: sparcv9-x-solaris2157485
-Ref: c6x-x-x157572
-Ref: tilegx-*-linux157663
-Ref: tilegxbe-*-linux157805
-Ref: tilepro-*-linux157948
-Ref: x-x-vxworks158069
-Ref: x86-64-x-x159591
-Ref: x86-64-x-solaris210159919
-Ref: xtensa-x-elf160581
-Ref: xtensa-x-linux161252
-Ref: windows161593
-Ref: x-x-cygwin163530
-Ref: x-x-interix164083
-Ref: x-x-mingw32164392
-Ref: older164618
-Ref: elf166735
-Node: Old166993
-Node: Configurations170130
-Node: GNU Free Documentation License173671
-Node: Concept Index198818
+Ref: nds32le-x-elf145983
+Ref: nds32be-x-elf146055
+Ref: powerpc-x-x146124
+Ref: powerpc-x-darwin146329
+Ref: powerpc-x-elf146823
+Ref: powerpc-x-linux-gnu146908
+Ref: powerpc-x-netbsd147003
+Ref: powerpc-x-eabisim147091
+Ref: powerpc-x-eabi147217
+Ref: powerpcle-x-elf147293
+Ref: powerpcle-x-eabisim147385
+Ref: powerpcle-x-eabi147518
+Ref: rl78-x-elf147601
+Ref: rx-x-elf147707
+Ref: s390-x-linux147906
+Ref: s390x-x-linux147978
+Ref: s390x-ibm-tpf148065
+Ref: x-x-solaris2148196
+Ref: sparc-x-x153116
+Ref: sparc-sun-solaris2153618
+Ref: sparc-sun-solaris210156372
+Ref: sparc-x-linux156748
+Ref: sparc64-x-solaris2156973
+Ref: sparcv9-x-solaris2157626
+Ref: c6x-x-x157713
+Ref: tilegx-*-linux157804
+Ref: tilegxbe-*-linux157946
+Ref: tilepro-*-linux158089
+Ref: x-x-vxworks158210
+Ref: x86-64-x-x159732
+Ref: x86-64-x-solaris210160060
+Ref: xtensa-x-elf160722
+Ref: xtensa-x-linux161393
+Ref: windows161734
+Ref: x-x-cygwin163671
+Ref: x-x-interix164224
+Ref: x-x-mingw32164533
+Ref: older164759
+Ref: elf166876
+Node: Old167134
+Node: Configurations170271
+Node: GNU Free Documentation License173812
+Node: Concept Index198959
 
 End Tag Table

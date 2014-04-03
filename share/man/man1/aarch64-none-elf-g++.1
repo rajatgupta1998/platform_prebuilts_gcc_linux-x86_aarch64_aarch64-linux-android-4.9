@@ -124,7 +124,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2014-03-21" "gcc-4.9.0" "GNU"
+.TH GCC 1 "2014-04-03" "gcc-4.9.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -7926,8 +7926,13 @@ regular (non-LTO) compilation.
 .Sp
 If object files containing \s-1GIMPLE\s0 bytecode are stored in a library archive, say
 \&\fIlibfoo.a\fR, it is possible to extract and use them in an \s-1LTO\s0 link if you
-are using a linker with plugin support.  To enable this feature, use
-the flag \fB\-fuse\-linker\-plugin\fR at link time:
+are using a linker with plugin support.  To create static libraries suitable
+for \s-1LTO\s0, use \fBgcc-ar\fR and \fBgcc-ranlib\fR instead of \fBar\fR
+and \f(CW\*(C`ranlib\*(C'\fR; to show the symbols of object files with \s-1GIMPLE\s0 bytecode, use
+\&\fBgcc-nm\fR.  Those commands require that \fBar\fR, \fBranlib\fR
+and \fBnm\fR have been compiled with plugin support.  At link time, use the the
+flag \fB\-fuse\-linker\-plugin\fR to ensure that the library participates in
+the \s-1LTO\s0 optimization process:
 .Sp
 .Vb 1
 \&        gcc \-o myprog \-O2 \-flto \-fuse\-linker\-plugin a.o b.o \-lfoo
@@ -7940,7 +7945,9 @@ to make them part of the aggregated \s-1GIMPLE\s0 image to be optimized.
 If you are not using a linker with plugin support and/or do not
 enable the linker plugin, then the objects inside \fIlibfoo.a\fR
 are extracted and linked as usual, but they do not participate
-in the \s-1LTO\s0 optimization process.
+in the \s-1LTO\s0 optimization process.  In order to make a static library suitable
+for both \s-1LTO\s0 optimization and usual linkage, compile its object files with
+\&\fB\-flto\fR \f(CW\*(C`\-ffat\-lto\-objects\*(C'\fR.
 .Sp
 Link-time optimizations do not require the presence of the whole program to
 operate.  If the program does not require any symbols to be exported, it is
@@ -19653,8 +19660,9 @@ These \fB\-m\fR options are supported on the \s-1SPARC:\s0
 .IX Item "-mapp-regs"
 .PD
 Specify \fB\-mapp\-regs\fR to generate output using the global registers
-2 through 4, which the \s-1SPARC\s0 \s-1SVR4\s0 \s-1ABI\s0 reserves for applications.  This
-is the default.
+2 through 4, which the \s-1SPARC\s0 \s-1SVR4\s0 \s-1ABI\s0 reserves for applications.  Like the
+global register 1, each global register 2 through 4 is then treated as an
+allocable register that is clobbered by function calls.  This is the default.
 .Sp
 To be fully \s-1SVR4\s0 ABI-compliant at the cost of some performance loss,
 specify \fB\-mno\-app\-regs\fR.  You should compile libraries and system
