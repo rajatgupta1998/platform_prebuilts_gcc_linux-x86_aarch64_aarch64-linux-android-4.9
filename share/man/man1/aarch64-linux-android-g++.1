@@ -124,7 +124,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2014-04-03" "gcc-4.9.0" "GNU"
+.TH GCC 1 "2014-04-15" "gcc-4.9.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1081,6 +1081,7 @@ See S/390 and zSeries Options.
 \&\fB\-ffixed\-\fR\fIreg\fR  \fB\-fexceptions 
 \&\-fnon\-call\-exceptions  \-fdelete\-dead\-exceptions  \-funwind\-tables 
 \&\-fasynchronous\-unwind\-tables 
+\&\-fno\-gnu\-unique 
 \&\-finhibit\-size\-directive  \-finstrument\-functions 
 \&\-finstrument\-functions\-exclude\-function\-list=\fR\fIsym\fR\fB,\fR\fIsym\fR\fB,... 
 \&\-finstrument\-functions\-exclude\-file\-list=\fR\fIfile\fR\fB,\fR\fIfile\fR\fB,... 
@@ -2571,9 +2572,10 @@ the compiler to never throw an exception.
 .IP "\fB\-Wnon\-virtual\-dtor\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wnon-virtual-dtor ( and Objective- only)"
 Warn when a class has virtual functions and an accessible non-virtual
-destructor, in which case it is possible but unsafe to delete
-an instance of a derived class through a pointer to the base class.
-This warning is also enabled if \fB\-Weffc++\fR is specified.
+destructor itself or in an accessible polymorphic base class, in which
+case it is possible but unsafe to delete an instance of a derived
+class through a pointer to the class itself or base class.  This
+warning is automatically enabled if \fB\-Weffc++\fR is specified.
 .IP "\fB\-Wreorder\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wreorder ( and Objective- only)"
 Warn when the order of member initializers given in the code does not
@@ -2606,31 +2608,29 @@ The following \fB\-W...\fR options are not affected by \fB\-Wall\fR.
 .IP "\fB\-Weffc++\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Weffc++ ( and Objective- only)"
 Warn about violations of the following style guidelines from Scott Meyers'
-\&\fIEffective \*(C+, Second Edition\fR book:
+\&\fIEffective \*(C+\fR series of books:
 .RS 4
 .IP "\(bu" 4
-Item 11:  Define a copy constructor and an assignment operator for classes
+Define a copy constructor and an assignment operator for classes
 with dynamically-allocated memory.
 .IP "\(bu" 4
-Item 12:  Prefer initialization to assignment in constructors.
+Prefer initialization to assignment in constructors.
 .IP "\(bu" 4
-Item 14:  Make destructors virtual in base classes.
+Have \f(CW\*(C`operator=\*(C'\fR return a reference to \f(CW*this\fR.
 .IP "\(bu" 4
-Item 15:  Have \f(CW\*(C`operator=\*(C'\fR return a reference to \f(CW*this\fR.
+Don't try to return a reference when you must return an object.
 .IP "\(bu" 4
-Item 23:  Don't try to return a reference when you must return an object.
+Distinguish between prefix and postfix forms of increment and
+decrement operators.
+.IP "\(bu" 4
+Never overload \f(CW\*(C`&&\*(C'\fR, \f(CW\*(C`||\*(C'\fR, or \f(CW\*(C`,\*(C'\fR.
 .RE
 .RS 4
 .Sp
-Also warn about violations of the following style guidelines from
-Scott Meyers' \fIMore Effective \*(C+\fR book:
-.IP "\(bu" 4
-Item 6:  Distinguish between prefix and postfix forms of increment and
-decrement operators.
-.IP "\(bu" 4
-Item 7:  Never overload \f(CW\*(C`&&\*(C'\fR, \f(CW\*(C`||\*(C'\fR, or \f(CW\*(C`,\*(C'\fR.
-.RE
-.RS 4
+This option also enables \fB\-Wnon\-virtual\-dtor\fR, which is also
+one of the effective \*(C+ recommendations.  However, the check is
+extended to warn about the lack of virtual destructor in accessible
+non-polymorphic bases classes too.
 .Sp
 When selecting this option, be aware that the standard library
 headers do not obey all of these guidelines; use \fBgrep \-v\fR
@@ -6734,7 +6734,7 @@ Attempt to remove redundant extension instructions.  This is especially
 helpful for the x86\-64 architecture, which implicitly zero-extends in 64\-bit
 registers after writing to their lower 32\-bit half.
 .Sp
-Enabled for x86 at levels \fB\-O2\fR, \fB\-O3\fR.
+Enabled for AArch64 and x86 at levels \fB\-O2\fR, \fB\-O3\fR.
 .IP "\fB\-flive\-range\-shrinkage\fR" 4
 .IX Item "-flive-range-shrinkage"
 Attempt to decrease register pressure through register live range
@@ -12147,6 +12147,10 @@ instructions because of a hardware erratum.  Skip instructions are
 \&\f(CW\*(C`SBRS\*(C'\fR, \f(CW\*(C`SBRC\*(C'\fR, \f(CW\*(C`SBIS\*(C'\fR, \f(CW\*(C`SBIC\*(C'\fR and \f(CW\*(C`CPSE\*(C'\fR.
 The second macro is only defined if \f(CW\*(C`_\|_AVR_HAVE_JMP_CALL_\|_\*(C'\fR is also
 set.
+.ie n .IP """_\|_AVR_ISA_RMW_\|_""" 4
+.el .IP "\f(CW_\|_AVR_ISA_RMW_\|_\fR" 4
+.IX Item "__AVR_ISA_RMW__"
+The device has Read-Modify-Write instructions (\s-1XCH\s0, \s-1LAC\s0, \s-1LAS\s0 and \s-1LAT\s0).
 .ie n .IP """_\|_AVR_SFR_OFFSET_\|_=\f(CIoffset\f(CW""" 4
 .el .IP "\f(CW_\|_AVR_SFR_OFFSET_\|_=\f(CIoffset\f(CW\fR" 4
 .IX Item "__AVR_SFR_OFFSET__=offset"
@@ -20753,6 +20757,19 @@ that needs this handling enables it on your behalf.
 Generate unwind table in \s-1DWARF\s0 2 format, if supported by target machine.  The
 table is exact at each instruction boundary, so it can be used for stack
 unwinding from asynchronous events (such as debugger or garbage collector).
+.IP "\fB\-fno\-gnu\-unique\fR" 4
+.IX Item "-fno-gnu-unique"
+On systems with recent \s-1GNU\s0 assembler and C library, the \*(C+ compiler
+uses the \f(CW\*(C`STB_GNU_UNIQUE\*(C'\fR binding to make sure that definitions
+of template static data members and static local variables in inline
+functions are unique even in the presence of \f(CW\*(C`RTLD_LOCAL\*(C'\fR; this
+is necessary to avoid problems with a library used by two different
+\&\f(CW\*(C`RTLD_LOCAL\*(C'\fR plugins depending on a definition in one of them and
+therefore disagreeing with the other one about the binding of the
+symbol.  But this causes \f(CW\*(C`dlclose\*(C'\fR to be ignored for affected
+DSOs; if your program relies on reinitialization of a \s-1DSO\s0 via
+\&\f(CW\*(C`dlclose\*(C'\fR and \f(CW\*(C`dlopen\*(C'\fR, you can use
+\&\fB\-fno\-gnu\-unique\fR.
 .IP "\fB\-fpcc\-struct\-return\fR" 4
 .IX Item "-fpcc-struct-return"
 Return \*(L"short\*(R" \f(CW\*(C`struct\*(C'\fR and \f(CW\*(C`union\*(C'\fR values in memory like
