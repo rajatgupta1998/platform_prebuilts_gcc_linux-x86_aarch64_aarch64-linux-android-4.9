@@ -1667,6 +1667,8 @@
 #define HAVE_movdfsicc 1
 #define HAVE_movsfdicc 1
 #define HAVE_movdfdicc 1
+#define HAVE_movsfcc 1
+#define HAVE_movdfcc 1
 #define HAVE_ffssi2 1
 #define HAVE_ffsdi2 1
 #define HAVE_ctzsi2 1
@@ -3865,6 +3867,8 @@ extern rtx        gen_movsfsicc                          (rtx, rtx, rtx, rtx);
 extern rtx        gen_movdfsicc                          (rtx, rtx, rtx, rtx);
 extern rtx        gen_movsfdicc                          (rtx, rtx, rtx, rtx);
 extern rtx        gen_movdfdicc                          (rtx, rtx, rtx, rtx);
+extern rtx        gen_movsfcc                            (rtx, rtx, rtx, rtx);
+extern rtx        gen_movdfcc                            (rtx, rtx, rtx, rtx);
 extern rtx        gen_ffssi2                             (rtx, rtx);
 extern rtx        gen_ffsdi2                             (rtx, rtx);
 extern rtx        gen_ctzsi2                             (rtx, rtx);
