@@ -1,5 +1,5 @@
 This is gprof.info, produced by makeinfo version 4.13 from
-/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-2014.05/build/objdir/../build/../binutils/binutils-current/gprof/gprof.texi.
+/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-linaro-git/build/objdir/../build/../binutils/binutils-current/gprof/gprof.texi.
 
 INFO-DIR-SECTION Software development
 START-INFO-DIR-ENTRY
@@ -2441,35 +2441,35 @@ permit their use in free software.
 
 
 Tag Table:
-Node: Top904
-Node: Introduction2240
-Node: Compiling4732
-Node: Executing8788
-Node: Invoking11576
-Node: Output Options12991
-Node: Analysis Options20080
-Node: Miscellaneous Options23778
-Node: Deprecated Options25033
-Node: Symspecs27102
-Node: Output28928
-Node: Flat Profile29968
-Node: Call Graph34921
-Node: Primary38153
-Node: Callers40741
-Node: Subroutines42858
-Node: Cycles44699
-Node: Line-by-line51476
-Node: Annotated Source55549
-Node: Inaccuracy58548
-Node: Sampling Error58806
-Node: Assumptions61710
-Node: How do I?63180
-Node: Incompatibilities64734
-Node: Details66228
-Node: Implementation66621
-Node: File Format72518
-Node: Internals76808
-Node: Debugging85303
-Node: GNU Free Documentation License86904
+Node: Top907
+Node: Introduction2243
+Node: Compiling4735
+Node: Executing8791
+Node: Invoking11579
+Node: Output Options12994
+Node: Analysis Options20083
+Node: Miscellaneous Options23781
+Node: Deprecated Options25036
+Node: Symspecs27105
+Node: Output28931
+Node: Flat Profile29971
+Node: Call Graph34924
+Node: Primary38156
+Node: Callers40744
+Node: Subroutines42861
+Node: Cycles44702
+Node: Line-by-line51479
+Node: Annotated Source55552
+Node: Inaccuracy58551
+Node: Sampling Error58809
+Node: Assumptions61713
+Node: How do I?63183
+Node: Incompatibilities64737
+Node: Details66231
+Node: Implementation66624
+Node: File Format72521
+Node: Internals76811
+Node: Debugging85306
+Node: GNU Free Documentation License86907
 
 End Tag Table
