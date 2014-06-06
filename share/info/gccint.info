@@ -36847,6 +36847,41 @@ be documented in `extend.texi'.
      specific target options and the caller does not use the same
      options.
 
+ -- Target Hook: rtx TARGET_GET_PIC_REG (void)
+     Return the pic_reg pseudo register which holds the base address of
+     GOT.   It is only required by the simplify-got optimization.
+
+ -- Target Hook: void TARGET_CLEAR_PIC_REG (void)
+     After successful simplify-got optimization, the pic_reg is
+     useless. So a  target can use this hook to clear pic_reg.
+
+ -- Target Hook: rtx TARGET_LOADED_GLOBAL_VAR (rtx INSN, rtx
+          *OFFSET_REG, rtx *OFFSET_INSN)
+     This hook is used to detect if the given INSN loads a global
+     variable's address from GOT with the form of
+           (set ADDRESS_REG (mem (plus pic_reg OFFSET_REG)))
+      If so return the global variable whose address will be loaded and
+     fill in  OFFSET_INSN and OFFSET_REG. OFFSET_REG is set at
+     OFFSET_INSN to hold the offset from GOT base to the GOT entry of
+     the  global variable. Otherwise return `NULL_RTX'.
+
+ -- Target Hook: bool TARGET_CAN_SIMPLIFY_GOT_ACCESS (int N_SYMBOL, int
+          N_ACCESS)
+     This hook determines if it satisfy the target dependent conditions
+     to do  simplify-got when given the number of global variable
+     accessing and the  number of accessed symbols. If the returned
+     value is false the GOT access  insns will not be rewritten.
+     Otherwise we will rewrite these insns.
+
+ -- Target Hook: void TARGET_LOAD_GLOBAL_ADDRESS (rtx SYMBOL, rtx
+          OFFSET_REG, rtx ADDRESS_REG, rtx LOAD_INSN, rtx OFFSET_INSN)
+     This hook does the actual rewriting of GOT access insn LOAD_INSN.
+     The global variable is SYMBOL. The global address should be loaded
+     into ADDRESS_REG. The register OFFSET_REG was previously set  in
+     insn OFFSET_INSN to hold the offset from GOT base to the GOT
+     entry of the global variable. Now it can be used as a scratch
+     register.
+
 
 File: gccint.info,  Node: Emulated TLS,  Next: MIPS Coprocessors,  Prev: Target Attributes,  Up: Target Macros
 
@@ -49481,6 +49516,7 @@ Concept Index
 * TARGET_CAN_ELIMINATE:                  Elimination.        (line   75)
 * TARGET_CAN_FOLLOW_JUMP:                Misc.               (line  720)
 * TARGET_CAN_INLINE_P:                   Target Attributes.  (line  160)
+* TARGET_CAN_SIMPLIFY_GOT_ACCESS:        Target Attributes.  (line  186)
 * TARGET_CAN_USE_DOLOOP_P:               Misc.               (line  678)
 * TARGET_CANNOT_FORCE_CONST_MEM:         Addressing Modes.   (line  237)
 * TARGET_CANNOT_MODIFY_JUMPS_P:          Misc.               (line  809)
@@ -49494,6 +49530,7 @@ Concept Index
 * TARGET_CHECK_STRING_OBJECT_FORMAT_ARG: Run-time Target.    (line  121)
 * TARGET_CLASS_LIKELY_SPILLED_P:         Register Classes.   (line  494)
 * TARGET_CLASS_MAX_NREGS:                Register Classes.   (line  511)
+* TARGET_CLEAR_PIC_REG:                  Target Attributes.  (line  171)
 * TARGET_COMMUTATIVE_P:                  Misc.               (line  726)
 * TARGET_COMP_TYPE_ATTRIBUTES:           Target Attributes.  (line   27)
 * TARGET_COMPARE_VERSION_PRIORITY:       Misc.               (line  653)
@@ -49587,6 +49624,7 @@ Concept Index
 * TARGET_GET_DRAP_RTX:                   Misc.               (line 1007)
 * TARGET_GET_FUNCTION_VERSIONS_DISPATCHER: Misc.             (line  663)
 * TARGET_GET_PCH_VALIDITY:               PCH Target.         (line    7)
+* TARGET_GET_PIC_REG:                    Target Attributes.  (line  167)
 * TARGET_GET_RAW_ARG_MODE:               Aggregate Return.   (line   83)
 * TARGET_GET_RAW_RESULT_MODE:            Aggregate Return.   (line   78)
 * TARGET_GIMPLE_FOLD_BUILTIN:            Misc.               (line  646)
@@ -49629,6 +49667,8 @@ Concept Index
 * TARGET_LIBGCC_CMP_RETURN_MODE:         Storage Layout.     (line  464)
 * TARGET_LIBGCC_SDATA_SECTION:           Sections.           (line  132)
 * TARGET_LIBGCC_SHIFT_COUNT_MODE:        Storage Layout.     (line  470)
+* TARGET_LOAD_GLOBAL_ADDRESS:            Target Attributes.  (line  194)
+* TARGET_LOADED_GLOBAL_VAR:              Target Attributes.  (line  176)
 * TARGET_LOOP_UNROLL_ADJUST:             Misc.               (line  851)
 * TARGET_LRA_P:                          Register Classes.   (line  553)
 * TARGET_MACHINE_DEPENDENT_REORG:        Misc.               (line  573)
@@ -50597,54 +50637,54 @@ Node: VMS Debug1580647
 Node: Floating Point1581234
 Node: Mode Switching1585710
 Node: Target Attributes1589706
-Node: Emulated TLS1598164
-Node: MIPS Coprocessors1601554
-Node: PCH Target1602851
-Node: C++ ABI1604693
-Node: Named Address Spaces1609485
-Node: Misc1614424
-Ref: TARGET_SHIFT_TRUNCATION_MASK1621166
-Node: Host Config1669680
-Node: Host Common1670748
-Node: Filesystem1673127
-Node: Host Misc1677242
-Node: Fragments1679691
-Node: Target Fragment1680886
-Node: Host Fragment1691519
-Node: Collect21691759
-Node: Header Dirs1694395
-Node: Type Information1695818
-Node: GTY Options1699098
-Node: Inheritance and GTY1713605
-Ref: Inheritance and GTY-Footnote-11715168
-Node: User GC1715436
-Node: GGC Roots1719171
-Node: Files1719887
-Node: Invoking the garbage collector1722594
-Node: Troubleshooting1724097
-Node: Plugins1725173
-Node: Plugins loading1726291
-Node: Plugin API1727160
-Node: Plugins pass1734824
-Node: Plugins GC1736793
-Node: Plugins description1738453
-Node: Plugins attr1738988
-Node: Plugins recording1741259
-Node: Plugins gate1742109
-Node: Plugins tracking1742700
-Node: Plugins building1743288
-Node: LTO1745077
-Node: LTO Overview1745938
-Node: LTO object file layout1751770
-Node: IPA1756402
-Node: WHOPR1765367
-Node: Internal flags1770058
-Node: Funding1771470
-Node: GNU Project1773953
-Node: Copying1774602
-Node: GNU Free Documentation License1812133
-Node: Contributors1837273
-Node: Option Index1875148
-Node: Concept Index1876025
+Node: Emulated TLS1599976
+Node: MIPS Coprocessors1603366
+Node: PCH Target1604663
+Node: C++ ABI1606505
+Node: Named Address Spaces1611297
+Node: Misc1616236
+Ref: TARGET_SHIFT_TRUNCATION_MASK1622978
+Node: Host Config1671492
+Node: Host Common1672560
+Node: Filesystem1674939
+Node: Host Misc1679054
+Node: Fragments1681503
+Node: Target Fragment1682698
+Node: Host Fragment1693331
+Node: Collect21693571
+Node: Header Dirs1696207
+Node: Type Information1697630
+Node: GTY Options1700910
+Node: Inheritance and GTY1715417
+Ref: Inheritance and GTY-Footnote-11716980
+Node: User GC1717248
+Node: GGC Roots1720983
+Node: Files1721699
+Node: Invoking the garbage collector1724406
+Node: Troubleshooting1725909
+Node: Plugins1726985
+Node: Plugins loading1728103
+Node: Plugin API1728972
+Node: Plugins pass1736636
+Node: Plugins GC1738605
+Node: Plugins description1740265
+Node: Plugins attr1740800
+Node: Plugins recording1743071
+Node: Plugins gate1743921
+Node: Plugins tracking1744512
+Node: Plugins building1745100
+Node: LTO1746889
+Node: LTO Overview1747750
+Node: LTO object file layout1753582
+Node: IPA1758214
+Node: WHOPR1767179
+Node: Internal flags1771870
+Node: Funding1773282
+Node: GNU Project1775765
+Node: Copying1776414
+Node: GNU Free Documentation License1813945
+Node: Contributors1839085
+Node: Option Index1876960
+Node: Concept Index1877837
 
 End Tag Table
