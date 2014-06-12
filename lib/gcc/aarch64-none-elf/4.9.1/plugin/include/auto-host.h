@@ -1255,6 +1255,13 @@
 #endif
 
 
+/* Define if the linker supports clearing hardware capabilities via mapfile.
+   */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_LD_CLEARCAP */
+#endif
+
+
 /* Define if your linker supports --demangle option. */
 #ifndef USED_FOR_TARGET
 #define HAVE_LD_DEMANGLE 1

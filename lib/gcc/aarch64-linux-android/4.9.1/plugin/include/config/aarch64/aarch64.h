@@ -365,8 +365,7 @@ extern unsigned long aarch64_tune_flags;
 
 #define HARD_REGNO_MODE_OK(REGNO, MODE)	aarch64_hard_regno_mode_ok (REGNO, MODE)
 
-#define MODES_TIEABLE_P(MODE1, MODE2)			\
-  (GET_MODE_CLASS (MODE1) == GET_MODE_CLASS (MODE2))
+#define MODES_TIEABLE_P(MODE1, MODE2) aarch64_modes_tieable_p (MODE1, MODE2)
 
 #define DWARF2_UNWIND_INFO 1
 
@@ -520,7 +519,6 @@ struct GTY (()) aarch64_frame
      been saved.  */
   HOST_WIDE_INT padding0;
   HOST_WIDE_INT hardfp_offset;	/* HARD_FRAME_POINTER_REGNUM */
-  HOST_WIDE_INT fp_lr_offset;	/* Space needed for saving fp and/or lr */
 
   bool laid_out;
 };
