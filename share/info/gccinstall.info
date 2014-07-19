@@ -1,5 +1,5 @@
 This is doc/gccinstall.info, produced by makeinfo version 4.13 from
-/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-2014.06/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.06/gcc/doc/install.texi.
+/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-2014.07/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.07/gcc/doc/install.texi.
 
 Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
@@ -3105,9 +3105,9 @@ the system libunwind library will always be used.
 aarch64*-*-*
 ============
 
-Pre 2.24 binutils does not have support for selecting -mabi and does not
-support ILP32.  If GCC 4.9 or later is built with pre 2.24, GCC will not
-support option -mabi=ilp32.
+Binutils pre 2.24 does not have support for selecting `-mabi' and does
+not support ILP32.  If it is used to build GCC 4.9 or later, GCC will
+not support option `-mabi=ilp32'.
 
 *-ibm-aix*
 ==========
@@ -4646,63 +4646,63 @@ Ref: ix86-x-solaris210131420
 Ref: ia64-x-linux132611
 Ref: ia64-x-hpux133381
 Ref: aarch64-x-x133936
-Ref: x-ibm-aix134138
-Ref: iq2000-x-elf141001
-Ref: lm32-x-elf141141
-Ref: lm32-x-uclinux141245
-Ref: m32c-x-elf141373
-Ref: m32r-x-elf141475
-Ref: m68k-x-x141577
-Ref: m68k-x-uclinux142615
-Ref: mep-x-elf142861
-Ref: microblaze-x-elf142971
-Ref: mips-x-x143090
-Ref: mips-sgi-irix5145486
-Ref: mips-sgi-irix6145566
-Ref: moxie-x-elf145753
-Ref: msp430-x-elf145800
-Ref: nds32le-x-elf145903
-Ref: nds32be-x-elf145975
-Ref: powerpc-x-x146044
-Ref: powerpc-x-darwin146249
-Ref: powerpc-x-elf146743
-Ref: powerpc-x-linux-gnu146828
-Ref: powerpc-x-netbsd146923
-Ref: powerpc-x-eabisim147011
-Ref: powerpc-x-eabi147137
-Ref: powerpcle-x-elf147213
-Ref: powerpcle-x-eabisim147305
-Ref: powerpcle-x-eabi147438
-Ref: rl78-x-elf147521
-Ref: rx-x-elf147627
-Ref: s390-x-linux147826
-Ref: s390x-x-linux147898
-Ref: s390x-ibm-tpf147985
-Ref: x-x-solaris2148116
-Ref: sparc-x-x153036
-Ref: sparc-sun-solaris2153538
-Ref: sparc-sun-solaris210156292
-Ref: sparc-x-linux156668
-Ref: sparc64-x-solaris2156893
-Ref: sparcv9-x-solaris2157546
-Ref: c6x-x-x157633
-Ref: tilegx-*-linux157724
-Ref: tilegxbe-*-linux157866
-Ref: tilepro-*-linux158009
-Ref: x-x-vxworks158130
-Ref: x86-64-x-x159652
-Ref: x86-64-x-solaris210159980
-Ref: xtensa-x-elf160642
-Ref: xtensa-x-linux161313
-Ref: windows161654
-Ref: x-x-cygwin163591
-Ref: x-x-interix164144
-Ref: x-x-mingw32164453
-Ref: older164679
-Ref: elf166796
-Node: Old167054
-Node: Configurations170191
-Node: GNU Free Documentation License173732
-Node: Concept Index198879
+Ref: x-ibm-aix134139
+Ref: iq2000-x-elf141002
+Ref: lm32-x-elf141142
+Ref: lm32-x-uclinux141246
+Ref: m32c-x-elf141374
+Ref: m32r-x-elf141476
+Ref: m68k-x-x141578
+Ref: m68k-x-uclinux142616
+Ref: mep-x-elf142862
+Ref: microblaze-x-elf142972
+Ref: mips-x-x143091
+Ref: mips-sgi-irix5145487
+Ref: mips-sgi-irix6145567
+Ref: moxie-x-elf145754
+Ref: msp430-x-elf145801
+Ref: nds32le-x-elf145904
+Ref: nds32be-x-elf145976
+Ref: powerpc-x-x146045
+Ref: powerpc-x-darwin146250
+Ref: powerpc-x-elf146744
+Ref: powerpc-x-linux-gnu146829
+Ref: powerpc-x-netbsd146924
+Ref: powerpc-x-eabisim147012
+Ref: powerpc-x-eabi147138
+Ref: powerpcle-x-elf147214
+Ref: powerpcle-x-eabisim147306
+Ref: powerpcle-x-eabi147439
+Ref: rl78-x-elf147522
+Ref: rx-x-elf147628
+Ref: s390-x-linux147827
+Ref: s390x-x-linux147899
+Ref: s390x-ibm-tpf147986
+Ref: x-x-solaris2148117
+Ref: sparc-x-x153037
+Ref: sparc-sun-solaris2153539
+Ref: sparc-sun-solaris210156293
+Ref: sparc-x-linux156669
+Ref: sparc64-x-solaris2156894
+Ref: sparcv9-x-solaris2157547
+Ref: c6x-x-x157634
+Ref: tilegx-*-linux157725
+Ref: tilegxbe-*-linux157867
+Ref: tilepro-*-linux158010
+Ref: x-x-vxworks158131
+Ref: x86-64-x-x159653
+Ref: x86-64-x-solaris210159981
+Ref: xtensa-x-elf160643
+Ref: xtensa-x-linux161314
+Ref: windows161655
+Ref: x-x-cygwin163592
+Ref: x-x-interix164145
+Ref: x-x-mingw32164454
+Ref: older164680
+Ref: elf166797
+Node: Old167055
+Node: Configurations170192
+Node: GNU Free Documentation License173733
+Node: Concept Index198880
 
 End Tag Table

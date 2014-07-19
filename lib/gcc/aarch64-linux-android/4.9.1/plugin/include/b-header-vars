@@ -1,4 +1,4 @@
-USER_H=arm_neon.h
+USER_H=arm_acle.h
 HASHTAB_H=hashtab.h
 OBSTACK_H=obstack.h
 SPLAY_TREE_H=splay-tree.h

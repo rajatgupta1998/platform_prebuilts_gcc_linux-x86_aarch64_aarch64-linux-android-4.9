@@ -22,10 +22,10 @@ enum machine_mode
   SImode,                  /* machmode.def:189 */
   DImode,                  /* machmode.def:190 */
   TImode,                  /* machmode.def:191 */
-  EImode,                  /* config/aarch64/aarch64-modes.def:40 */
-  OImode,                  /* config/aarch64/aarch64-modes.def:36 */
-  CImode,                  /* config/aarch64/aarch64-modes.def:41 */
-  XImode,                  /* config/aarch64/aarch64-modes.def:42 */
+  EImode,                  /* config/aarch64/aarch64-modes.def:41 */
+  OImode,                  /* config/aarch64/aarch64-modes.def:37 */
+  CImode,                  /* config/aarch64/aarch64-modes.def:42 */
+  XImode,                  /* config/aarch64/aarch64-modes.def:43 */
   QQmode,                  /* machmode.def:210 */
   HQmode,                  /* machmode.def:211 */
   SQmode,                  /* machmode.def:212 */
@@ -46,7 +46,7 @@ enum machine_mode
   UTAmode,                 /* machmode.def:230 */
   SFmode,                  /* machmode.def:202 */
   DFmode,                  /* machmode.def:203 */
-  TFmode,                  /* config/aarch64/aarch64-modes.def:55 */
+  TFmode,                  /* config/aarch64/aarch64-modes.def:56 */
   SDmode,                  /* machmode.def:242 */
   DDmode,                  /* machmode.def:243 */
   TDmode,                  /* machmode.def:244 */
@@ -69,32 +69,33 @@ enum machine_mode
   V8HImode,                /* config/aarch64/aarch64-modes.def:31 */
   V4SImode,                /* config/aarch64/aarch64-modes.def:31 */
   V2DImode,                /* config/aarch64/aarch64-modes.def:31 */
-  V32QImode,               /* config/aarch64/aarch64-modes.def:45 */
-  V16HImode,               /* config/aarch64/aarch64-modes.def:45 */
-  V8SImode,                /* config/aarch64/aarch64-modes.def:45 */
-  V4DImode,                /* config/aarch64/aarch64-modes.def:45 */
-  V2TImode,                /* config/aarch64/aarch64-modes.def:45 */
-  V48QImode,               /* config/aarch64/aarch64-modes.def:48 */
-  V24HImode,               /* config/aarch64/aarch64-modes.def:48 */
-  V12SImode,               /* config/aarch64/aarch64-modes.def:48 */
-  V6DImode,                /* config/aarch64/aarch64-modes.def:48 */
-  V3TImode,                /* config/aarch64/aarch64-modes.def:48 */
-  V2EImode,                /* config/aarch64/aarch64-modes.def:48 */
-  V64QImode,               /* config/aarch64/aarch64-modes.def:51 */
-  V32HImode,               /* config/aarch64/aarch64-modes.def:51 */
-  V16SImode,               /* config/aarch64/aarch64-modes.def:51 */
-  V8DImode,                /* config/aarch64/aarch64-modes.def:51 */
-  V4TImode,                /* config/aarch64/aarch64-modes.def:51 */
-  V2OImode,                /* config/aarch64/aarch64-modes.def:51 */
+  V32QImode,               /* config/aarch64/aarch64-modes.def:46 */
+  V16HImode,               /* config/aarch64/aarch64-modes.def:46 */
+  V8SImode,                /* config/aarch64/aarch64-modes.def:46 */
+  V4DImode,                /* config/aarch64/aarch64-modes.def:46 */
+  V2TImode,                /* config/aarch64/aarch64-modes.def:46 */
+  V48QImode,               /* config/aarch64/aarch64-modes.def:49 */
+  V24HImode,               /* config/aarch64/aarch64-modes.def:49 */
+  V12SImode,               /* config/aarch64/aarch64-modes.def:49 */
+  V6DImode,                /* config/aarch64/aarch64-modes.def:49 */
+  V3TImode,                /* config/aarch64/aarch64-modes.def:49 */
+  V2EImode,                /* config/aarch64/aarch64-modes.def:49 */
+  V64QImode,               /* config/aarch64/aarch64-modes.def:52 */
+  V32HImode,               /* config/aarch64/aarch64-modes.def:52 */
+  V16SImode,               /* config/aarch64/aarch64-modes.def:52 */
+  V8DImode,                /* config/aarch64/aarch64-modes.def:52 */
+  V4TImode,                /* config/aarch64/aarch64-modes.def:52 */
+  V2OImode,                /* config/aarch64/aarch64-modes.def:52 */
   V2SFmode,                /* config/aarch64/aarch64-modes.def:32 */
+  V1DFmode,                /* config/aarch64/aarch64-modes.def:34 */
   V4SFmode,                /* config/aarch64/aarch64-modes.def:33 */
   V2DFmode,                /* config/aarch64/aarch64-modes.def:33 */
-  V8SFmode,                /* config/aarch64/aarch64-modes.def:46 */
-  V4DFmode,                /* config/aarch64/aarch64-modes.def:46 */
-  V12SFmode,               /* config/aarch64/aarch64-modes.def:49 */
-  V6DFmode,                /* config/aarch64/aarch64-modes.def:49 */
-  V16SFmode,               /* config/aarch64/aarch64-modes.def:52 */
-  V8DFmode,                /* config/aarch64/aarch64-modes.def:52 */
+  V8SFmode,                /* config/aarch64/aarch64-modes.def:47 */
+  V4DFmode,                /* config/aarch64/aarch64-modes.def:47 */
+  V12SFmode,               /* config/aarch64/aarch64-modes.def:50 */
+  V6DFmode,                /* config/aarch64/aarch64-modes.def:50 */
+  V16SFmode,               /* config/aarch64/aarch64-modes.def:53 */
+  V8DFmode,                /* config/aarch64/aarch64-modes.def:53 */
   MAX_MACHINE_MODE,
 
   MIN_MODE_RANDOM = VOIDmode,

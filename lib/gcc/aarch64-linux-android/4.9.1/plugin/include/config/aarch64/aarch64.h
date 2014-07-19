@@ -35,6 +35,9 @@
       if (TARGET_SIMD)					\
 	builtin_define ("__ARM_NEON");			\
 							\
+      if (TARGET_CRC32)				\
+	builtin_define ("__ARM_FEATURE_CRC32");		\
+							\
       switch (aarch64_cmodel)				\
 	{						\
 	  case AARCH64_CMODEL_TINY:			\
@@ -187,6 +190,9 @@ extern unsigned long aarch64_tune_flags;
 
 /* Crypto is an optional extension to AdvSIMD.  */
 #define TARGET_CRYPTO (TARGET_SIMD && AARCH64_ISA_CRYPTO)
+
+/* CRC instructions that can be enabled through +crc arch extension.  */
+#define TARGET_CRC32 (AARCH64_ISA_CRC)
 
 /* Standard register usage.  */
 
@@ -408,6 +414,7 @@ extern unsigned long aarch64_tune_flags;
 enum reg_class
 {
   NO_REGS,
+  CALLER_SAVE_REGS,
   CORE_REGS,
   GENERAL_REGS,
   STACK_REG,
@@ -423,6 +430,7 @@ enum reg_class
 #define REG_CLASS_NAMES				\
 {						\
   "NO_REGS",					\
+  "CALLER_SAVE_REGS",				\
   "CORE_REGS",					\
   "GENERAL_REGS",				\
   "STACK_REG",					\
@@ -435,6 +443,7 @@ enum reg_class
 #define REG_CLASS_CONTENTS						\
 {									\
   { 0x00000000, 0x00000000, 0x00000000 },	/* NO_REGS */		\
+  { 0x0007ffff, 0x00000000, 0x00000000 },	/* CALLER_SAVE_REGS */	\
   { 0x7fffffff, 0x00000000, 0x00000003 },	/* CORE_REGS */		\
   { 0x7fffffff, 0x00000000, 0x00000003 },	/* GENERAL_REGS */	\
   { 0x80000000, 0x00000000, 0x00000000 },	/* STACK_REG */		\
@@ -659,12 +668,14 @@ do {									     \
 /* The base cost overhead of a memcpy call, for MOVE_RATIO and friends.  */
 #define AARCH64_CALL_RATIO 8
 
-/* When optimizing for size, give a better estimate of the length of a memcpy
-   call, but use the default otherwise.  But move_by_pieces_ninsns() counts
-   memory-to-memory moves, and we'll have to generate a load & store for each,
-   so halve the value to take that into account.  */
+/* MOVE_RATIO dictates when we will use the move_by_pieces infrastructure.
+   move_by_pieces will continually copy the largest safe chunks.  So a
+   7-byte copy is a 4-byte + 2-byte + byte copy.  This proves inefficient
+   for both size and speed of copy, so we will instead use the "movmem"
+   standard name to implement the copy.  This logic does not apply when
+   targeting -mstrict-align, so keep a sensible default in that case.  */
 #define MOVE_RATIO(speed) \
-  (((speed) ? 15 : AARCH64_CALL_RATIO) / 2)
+  (!STRICT_ALIGNMENT ? 2 : (((speed) ? 15 : AARCH64_CALL_RATIO) / 2))
 
 /* For CLEAR_RATIO, when optimizing for size, give a better estimate
    of the length of a memset call, but use the default otherwise.  */
@@ -823,6 +834,11 @@ do {									     \
   aarch64_cannot_change_mode_class (FROM, TO, CLASS)
 
 #define SHIFT_COUNT_TRUNCATED !TARGET_SIMD
+
+/* Choose appropriate mode for caller saves, so we do the minimum
+   required size of load/store.  */
+#define HARD_REGNO_CALLER_SAVE_MODE(REGNO, NREGS, MODE) \
+  aarch64_hard_regno_caller_save_mode ((REGNO), (NREGS), (MODE))
 
 /* Callee only saves lower 64-bits of a 128-bit register.  Tell the
    compiler the callee clobbers the top 64-bits when restoring the

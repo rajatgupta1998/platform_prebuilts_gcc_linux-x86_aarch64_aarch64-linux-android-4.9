@@ -21,7 +21,7 @@
 #ifndef GCC_AARCH64_LINUX_H
 #define GCC_AARCH64_LINUX_H
 
-#define GLIBC_DYNAMIC_LINKER "/lib/ld-linux-aarch64%{mbig-endian:_be}.so.1"
+#define GLIBC_DYNAMIC_LINKER "/lib/ld-linux-aarch64%{mbig-endian:_be}%{mabi=ilp32:_ilp32}.so.1"
 #undef BIONIC_DYNAMIC_LINKER
 #define BIONIC_DYNAMIC_LINKER "/system/bin/linker64"
 
@@ -35,7 +35,7 @@
    -dynamic-linker " GNU_USER_DYNAMIC_LINKER "	\
    -X						\
    %{mbig-endian:-EB} %{mlittle-endian:-EL}     \
-   -maarch64linux%{mbig-endian:b}"
+   -maarch64linux%{mabi=ilp32:32}%{mbig-endian:b}"
 
 #define TARGET_OS_CPP_BUILTINS()		\
   do						\

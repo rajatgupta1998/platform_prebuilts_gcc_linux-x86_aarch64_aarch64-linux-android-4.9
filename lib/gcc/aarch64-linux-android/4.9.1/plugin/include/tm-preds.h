@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-2014.06/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.06/gcc/config/aarch64/aarch64.md'.  */
+   from the machine description file '/mnt/jenkins/workspace/bernhard.rosenkranzer_toolchain64-4.9-2014.07/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.07/gcc/config/aarch64/aarch64.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
@@ -22,6 +22,7 @@ extern int indirect_operand (rtx, enum machine_mode);
 extern int ordered_comparison_operator (rtx, enum machine_mode);
 extern int comparison_operator (rtx, enum machine_mode);
 extern int cc_register (rtx, enum machine_mode);
+extern int aarch64_call_insn_operand (rtx, enum machine_mode);
 extern int aarch64_simd_register (rtx, enum machine_mode);
 extern int aarch64_reg_or_zero (rtx, enum machine_mode);
 extern int aarch64_reg_or_fp_zero (rtx, enum machine_mode);
@@ -67,6 +68,7 @@ enum constraint_num
 {
   CONSTRAINT__UNKNOWN = 0,
   CONSTRAINT_k,
+  CONSTRAINT_Ucs,
   CONSTRAINT_w,
   CONSTRAINT_x,
   CONSTRAINT_I,
@@ -81,6 +83,7 @@ enum constraint_num
   CONSTRAINT_Ush,
   CONSTRAINT_Uss,
   CONSTRAINT_Usd,
+  CONSTRAINT_Usf,
   CONSTRAINT_UsM,
   CONSTRAINT_Ui1,
   CONSTRAINT_Ui3,
