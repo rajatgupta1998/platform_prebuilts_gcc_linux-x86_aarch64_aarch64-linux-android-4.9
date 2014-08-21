@@ -491,14 +491,14 @@
 #define HAVE_move_lo_quad_internal_v16qi (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_v8hi (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_v4si (TARGET_SIMD && !BYTES_BIG_ENDIAN)
-#define HAVE_move_lo_quad_internal_v2di (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_v4sf (TARGET_SIMD && !BYTES_BIG_ENDIAN)
+#define HAVE_move_lo_quad_internal_v2di (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_v2df (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_be_v16qi (TARGET_SIMD && BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_be_v8hi (TARGET_SIMD && BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_be_v4si (TARGET_SIMD && BYTES_BIG_ENDIAN)
-#define HAVE_move_lo_quad_internal_be_v2di (TARGET_SIMD && BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_be_v4sf (TARGET_SIMD && BYTES_BIG_ENDIAN)
+#define HAVE_move_lo_quad_internal_be_v2di (TARGET_SIMD && BYTES_BIG_ENDIAN)
 #define HAVE_move_lo_quad_internal_be_v2df (TARGET_SIMD && BYTES_BIG_ENDIAN)
 #define HAVE_aarch64_simd_move_hi_quad_v16qi (TARGET_SIMD && !BYTES_BIG_ENDIAN)
 #define HAVE_aarch64_simd_move_hi_quad_v8hi (TARGET_SIMD && !BYTES_BIG_ENDIAN)
@@ -2890,14 +2890,14 @@ extern rtx        gen_uminv4si3                           (rtx, rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_v16qi         (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_v8hi          (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_v4si          (rtx, rtx);
-extern rtx        gen_move_lo_quad_internal_v2di          (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_v4sf          (rtx, rtx);
+extern rtx        gen_move_lo_quad_internal_v2di          (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_v2df          (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_be_v16qi      (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_be_v8hi       (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_be_v4si       (rtx, rtx);
-extern rtx        gen_move_lo_quad_internal_be_v2di       (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_be_v4sf       (rtx, rtx);
+extern rtx        gen_move_lo_quad_internal_be_v2di       (rtx, rtx);
 extern rtx        gen_move_lo_quad_internal_be_v2df       (rtx, rtx);
 extern rtx        gen_aarch64_simd_move_hi_quad_v16qi     (rtx, rtx, rtx);
 extern rtx        gen_aarch64_simd_move_hi_quad_v8hi      (rtx, rtx, rtx);
