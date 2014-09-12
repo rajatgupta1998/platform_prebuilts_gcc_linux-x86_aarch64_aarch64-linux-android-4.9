@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.08/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.08/gcc/config/aarch64/aarch64.md'.  */
+   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.09/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.09/gcc/config/aarch64/aarch64.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
@@ -43,6 +43,7 @@ extern int aarch64_imm3 (rtx, enum machine_mode);
 extern int aarch64_pwr_imm3 (rtx, enum machine_mode);
 extern int aarch64_pwr_2_si (rtx, enum machine_mode);
 extern int aarch64_pwr_2_di (rtx, enum machine_mode);
+extern int aarch64_mem_pair_offset (rtx, enum machine_mode);
 extern int aarch64_mem_pair_operand (rtx, enum machine_mode);
 extern int aarch64_valid_symref (rtx, enum machine_mode);
 extern int aarch64_tls_ie_symref (rtx, enum machine_mode);

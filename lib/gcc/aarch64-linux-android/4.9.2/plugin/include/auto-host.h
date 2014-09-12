@@ -1739,7 +1739,7 @@
 
 /* Define to 1 if HOST_WIDE_INT must be 64 bits wide (see hwint.h). */
 #ifndef USED_FOR_TARGET
-/* #undef NEED_64BIT_HOST_WIDE_INT */
+#define NEED_64BIT_HOST_WIDE_INT 1
 #endif
 
 
