@@ -30,10 +30,7 @@ SECTIONS
   .rela.dtors   0 : { *(.rela.dtors) }
   .rela.got     0 : { *(.rela.got) }
   .rela.bss     0 : { *(.rela.bss) }
-  .rela.iplt    0 :
-    {
-      *(.rela.iplt)
-    }
+  .rela.ifunc   0 : { *(.rela.ifunc) }
   .rela.plt     0 :
     {
       *(.rela.plt)
@@ -42,8 +39,7 @@ SECTIONS
   {
     KEEP (*(SORT_NONE(.init)))
   } =0
-  .plt          0 : { *(.plt) }
-  .iplt         0 : { *(.iplt) }
+  .plt          0 : { *(.plt) *(.iplt) }
   .text         0 :
   {
     *(.text .stub)
@@ -120,7 +116,7 @@ SECTIONS
   /* DWARF 2 */
   .debug_info     0 : { *(.debug_info) }
   .debug_abbrev   0 : { *(.debug_abbrev) }
-  .debug_line     0 : { *(.debug_line) }
+  .debug_line     0 : { *(.debug_line .debug_line.* .debug_line_end ) }
   .debug_frame    0 : { *(.debug_frame) }
   .debug_str      0 : { *(.debug_str) }
   .debug_loc      0 : { *(.debug_loc) }

@@ -426,7 +426,7 @@
 
 /* Define if your assembler supports the -mabi option. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_AS_MABI_OPTION */
+#define HAVE_AS_MABI_OPTION 1
 #endif
 
 
@@ -1367,7 +1367,7 @@
 
 /* Define to the level of your linker's plugin support. */
 #ifndef USED_FOR_TARGET
-#define HAVE_LTO_PLUGIN 2
+#define HAVE_LTO_PLUGIN 0
 #endif
 
 
