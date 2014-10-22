@@ -341,6 +341,8 @@
 #define HAVE_bswapv2si (TARGET_SIMD)
 #define HAVE_bswapv4si (TARGET_SIMD)
 #define HAVE_bswapv2di (TARGET_SIMD)
+#define HAVE_aarch64_rbitv8qi (TARGET_SIMD)
+#define HAVE_aarch64_rbitv16qi (TARGET_SIMD)
 #define HAVE_negv8qi2 (TARGET_SIMD)
 #define HAVE_negv16qi2 (TARGET_SIMD)
 #define HAVE_negv4hi2 (TARGET_SIMD)
@@ -2506,8 +2508,8 @@ extern rtx        gen_aarch64_crc32cb                     (rtx, rtx, rtx);
 extern rtx        gen_aarch64_crc32ch                     (rtx, rtx, rtx);
 extern rtx        gen_aarch64_crc32cw                     (rtx, rtx, rtx);
 extern rtx        gen_aarch64_crc32cx                     (rtx, rtx, rtx);
-extern rtx        gen_csinc3si_insn                       (rtx, rtx, rtx, rtx, rtx);
-extern rtx        gen_csinc3di_insn                       (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_csinc3si_insn                       (rtx, rtx, rtx, rtx);
+extern rtx        gen_csinc3di_insn                       (rtx, rtx, rtx, rtx);
 extern rtx        gen_andsi3                              (rtx, rtx, rtx);
 extern rtx        gen_iorsi3                              (rtx, rtx, rtx);
 extern rtx        gen_xorsi3                              (rtx, rtx, rtx);
@@ -2740,6 +2742,8 @@ extern rtx        gen_bswapv8hi                           (rtx, rtx);
 extern rtx        gen_bswapv2si                           (rtx, rtx);
 extern rtx        gen_bswapv4si                           (rtx, rtx);
 extern rtx        gen_bswapv2di                           (rtx, rtx);
+extern rtx        gen_aarch64_rbitv8qi                    (rtx, rtx);
+extern rtx        gen_aarch64_rbitv16qi                   (rtx, rtx);
 extern rtx        gen_negv8qi2                            (rtx, rtx);
 extern rtx        gen_negv16qi2                           (rtx, rtx);
 extern rtx        gen_negv4hi2                            (rtx, rtx);

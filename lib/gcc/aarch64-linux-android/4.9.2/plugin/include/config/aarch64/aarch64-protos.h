@@ -173,6 +173,7 @@ struct tune_params
 };
 
 HOST_WIDE_INT aarch64_initial_elimination_offset (unsigned, unsigned);
+int aarch64_get_condition_code (rtx);
 bool aarch64_bitmask_imm (HOST_WIDE_INT val, enum machine_mode);
 bool aarch64_cannot_change_mode_class (enum machine_mode,
 				       enum machine_mode,
@@ -308,6 +309,8 @@ aarch64_builtin_vectorized_function (tree fndecl,
 
 extern void aarch64_split_combinev16qi (rtx operands[3]);
 extern void aarch64_expand_vec_perm (rtx target, rtx op0, rtx op1, rtx sel);
+extern bool aarch64_madd_needs_nop (rtx);
+extern void aarch64_final_prescan_insn (rtx);
 extern bool
 aarch64_expand_vec_perm_const (rtx target, rtx op0, rtx op1, rtx sel);
 void aarch64_atomic_assign_expand_fenv (tree *, tree *, tree *);

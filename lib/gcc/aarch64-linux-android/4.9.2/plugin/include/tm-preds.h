@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.09/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.09/gcc/config/aarch64/aarch64.md'.  */
+   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.10/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.10/gcc/config/aarch64/aarch64.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
@@ -52,6 +52,7 @@ extern int aarch64_mov_operand (rtx, enum machine_mode);
 extern int aarch64_movti_operand (rtx, enum machine_mode);
 extern int aarch64_reg_or_imm (rtx, enum machine_mode);
 extern int aarch64_comparison_operator (rtx, enum machine_mode);
+extern int aarch64_comparison_operation (rtx, enum machine_mode);
 extern int aarch64_sync_memory_operand (rtx, enum machine_mode);
 extern int vect_par_cnst_hi_half (rtx, enum machine_mode);
 extern int vect_par_cnst_lo_half (rtx, enum machine_mode);
