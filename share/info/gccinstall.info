@@ -1,5 +1,5 @@
 This is doc/gccinstall.info, produced by makeinfo version 4.13 from
-/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.10/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.10/gcc/doc/install.texi.
+/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.10/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.10-1/gcc/doc/install.texi.
 
 Copyright (C) 1988-2014 Free Software Foundation, Inc.
 
@@ -4619,100 +4619,100 @@ Concept Index
 
 
 Tag Table:
-Node: Top1824
-Node: Installing GCC2382
-Node: Prerequisites4019
-Node: Downloading the source15687
-Node: Configuration17241
-Ref: with-gnu-as32703
-Ref: with-as33601
-Ref: with-gnu-ld35014
-Node: Building84834
-Node: Testing100222
-Node: Final install108094
-Node: Binaries113408
-Node: Specific114876
-Ref: alpha-x-x115386
-Ref: alpha-dec-osf51115875
-Ref: amd64-x-solaris210116400
-Ref: arc-x-elf32116503
-Ref: arc-linux-uclibc116679
-Ref: arm-x-eabi116820
-Ref: avr117031
-Ref: bfin117671
-Ref: cr16117913
-Ref: cris118328
-Ref: dos119144
-Ref: epiphany-x-elf119467
-Ref: x-x-freebsd119572
-Ref: h8300-hms121409
-Ref: hppa-hp-hpux121761
-Ref: hppa-hp-hpux10124132
-Ref: hppa-hp-hpux11124545
-Ref: x-x-linux-gnu130204
-Ref: ix86-x-linux130397
-Ref: ix86-x-solaris29130710
-Ref: ix86-x-solaris210131489
-Ref: ia64-x-linux132680
-Ref: ia64-x-hpux133450
-Ref: aarch64-x-x134005
-Ref: x-ibm-aix134785
-Ref: iq2000-x-elf141648
-Ref: lm32-x-elf141788
-Ref: lm32-x-uclinux141892
-Ref: m32c-x-elf142020
-Ref: m32r-x-elf142122
-Ref: m68k-x-x142224
-Ref: m68k-x-uclinux143262
-Ref: mep-x-elf143508
-Ref: microblaze-x-elf143618
-Ref: mips-x-x143737
-Ref: mips-sgi-irix5146133
-Ref: mips-sgi-irix6146213
-Ref: moxie-x-elf146400
-Ref: msp430-x-elf146447
-Ref: nds32le-x-elf146550
-Ref: nds32be-x-elf146622
-Ref: powerpc-x-x146691
-Ref: powerpc-x-darwin146896
-Ref: powerpc-x-elf147390
-Ref: powerpc-x-linux-gnu147475
-Ref: powerpc-x-netbsd147570
-Ref: powerpc-x-eabisim147658
-Ref: powerpc-x-eabi147784
-Ref: powerpcle-x-elf147860
-Ref: powerpcle-x-eabisim147952
-Ref: powerpcle-x-eabi148085
-Ref: rl78-x-elf148168
-Ref: rx-x-elf148274
-Ref: s390-x-linux148473
-Ref: s390x-x-linux148545
-Ref: s390x-ibm-tpf148632
-Ref: x-x-solaris2148763
-Ref: sparc-x-x153683
-Ref: sparc-sun-solaris2154185
-Ref: sparc-sun-solaris210156939
-Ref: sparc-x-linux157315
-Ref: sparc64-x-solaris2157540
-Ref: sparcv9-x-solaris2158193
-Ref: c6x-x-x158280
-Ref: tilegx-*-linux158371
-Ref: tilegxbe-*-linux158513
-Ref: tilepro-*-linux158656
-Ref: x-x-vxworks158777
-Ref: x86-64-x-x160299
-Ref: x86-64-x-solaris210160627
-Ref: xtensa-x-elf161289
-Ref: xtensa-x-linux161960
-Ref: windows162301
-Ref: x-x-cygwin164238
-Ref: x-x-interix164791
-Ref: x-x-mingw32165100
-Ref: older165326
-Ref: elf167443
-Node: Old167701
-Node: Configurations170838
-Node: GNU Free Documentation License174379
-Node: Concept Index199526
+Node: Top1826
+Node: Installing GCC2384
+Node: Prerequisites4021
+Node: Downloading the source15689
+Node: Configuration17243
+Ref: with-gnu-as32705
+Ref: with-as33603
+Ref: with-gnu-ld35016
+Node: Building84836
+Node: Testing100224
+Node: Final install108096
+Node: Binaries113410
+Node: Specific114878
+Ref: alpha-x-x115388
+Ref: alpha-dec-osf51115877
+Ref: amd64-x-solaris210116402
+Ref: arc-x-elf32116505
+Ref: arc-linux-uclibc116681
+Ref: arm-x-eabi116822
+Ref: avr117033
+Ref: bfin117673
+Ref: cr16117915
+Ref: cris118330
+Ref: dos119146
+Ref: epiphany-x-elf119469
+Ref: x-x-freebsd119574
+Ref: h8300-hms121411
+Ref: hppa-hp-hpux121763
+Ref: hppa-hp-hpux10124134
+Ref: hppa-hp-hpux11124547
+Ref: x-x-linux-gnu130206
+Ref: ix86-x-linux130399
+Ref: ix86-x-solaris29130712
+Ref: ix86-x-solaris210131491
+Ref: ia64-x-linux132682
+Ref: ia64-x-hpux133452
+Ref: aarch64-x-x134007
+Ref: x-ibm-aix134787
+Ref: iq2000-x-elf141650
+Ref: lm32-x-elf141790
+Ref: lm32-x-uclinux141894
+Ref: m32c-x-elf142022
+Ref: m32r-x-elf142124
+Ref: m68k-x-x142226
+Ref: m68k-x-uclinux143264
+Ref: mep-x-elf143510
+Ref: microblaze-x-elf143620
+Ref: mips-x-x143739
+Ref: mips-sgi-irix5146135
+Ref: mips-sgi-irix6146215
+Ref: moxie-x-elf146402
+Ref: msp430-x-elf146449
+Ref: nds32le-x-elf146552
+Ref: nds32be-x-elf146624
+Ref: powerpc-x-x146693
+Ref: powerpc-x-darwin146898
+Ref: powerpc-x-elf147392
+Ref: powerpc-x-linux-gnu147477
+Ref: powerpc-x-netbsd147572
+Ref: powerpc-x-eabisim147660
+Ref: powerpc-x-eabi147786
+Ref: powerpcle-x-elf147862
+Ref: powerpcle-x-eabisim147954
+Ref: powerpcle-x-eabi148087
+Ref: rl78-x-elf148170
+Ref: rx-x-elf148276
+Ref: s390-x-linux148475
+Ref: s390x-x-linux148547
+Ref: s390x-ibm-tpf148634
+Ref: x-x-solaris2148765
+Ref: sparc-x-x153685
+Ref: sparc-sun-solaris2154187
+Ref: sparc-sun-solaris210156941
+Ref: sparc-x-linux157317
+Ref: sparc64-x-solaris2157542
+Ref: sparcv9-x-solaris2158195
+Ref: c6x-x-x158282
+Ref: tilegx-*-linux158373
+Ref: tilegxbe-*-linux158515
+Ref: tilepro-*-linux158658
+Ref: x-x-vxworks158779
+Ref: x86-64-x-x160301
+Ref: x86-64-x-solaris210160629
+Ref: xtensa-x-elf161291
+Ref: xtensa-x-linux161962
+Ref: windows162303
+Ref: x-x-cygwin164240
+Ref: x-x-interix164793
+Ref: x-x-mingw32165102
+Ref: older165328
+Ref: elf167445
+Node: Old167703
+Node: Configurations170840
+Node: GNU Free Documentation License174381
+Node: Concept Index199528
 
 End Tag Table
