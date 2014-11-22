@@ -5084,6 +5084,14 @@ unconditionally by specifying '--no-fix-cortex-a8'.
    The erratum only affects Thumb-2 code.  Please contact ARM for
 further details.
 
+   The '--fix-cortex-a53-835769' switch enables a link-time workaround
+for erratum 835769 present on certain early revisions of Cortex-A53
+processors.  The workaround is disabled by default.  It can be enabled
+by specifying '--fix-cortex-a53-835769', or disabled unconditionally by
+specifying '--no-fix-cortex-a53-835769'.
+
+   Please contact ARM for further details.
+
    The '--no-merge-exidx-entries' switch disables the merging of
 adjacent exidx entries in debuginfo.
 
@@ -7207,6 +7215,7 @@ LD Index
 * --file-alignment:                      Options.            (line 1685)
 * --filter=NAME:                         Options.            (line  275)
 * --fix-arm1176:                         ARM.                (line  110)
+* --fix-cortex-a53-835769:               i960.               (line   49)
 * --fix-cortex-a8:                       i960.               (line   40)
 * --fix-v4bx:                            ARM.                (line   47)
 * --fix-v4bx-interworking:               ARM.                (line   60)
@@ -7238,7 +7247,7 @@ LD Index
 * --major-image-version:                 Options.            (line 1728)
 * --major-os-version:                    Options.            (line 1733)
 * --major-subsystem-version:             Options.            (line 1737)
-* --merge-exidx-entries:                 i960.               (line   49)
+* --merge-exidx-entries:                 i960.               (line   57)
 * --minor-image-version:                 Options.            (line 1742)
 * --minor-os-version:                    Options.            (line 1747)
 * --minor-subsystem-version:             Options.            (line 1751)
@@ -7259,6 +7268,7 @@ LD Index
 * --no-export-dynamic:                   Options.            (line  220)
 * --no-fatal-warnings:                   Options.            (line  916)
 * --no-fix-arm1176:                      ARM.                (line  110)
+* --no-fix-cortex-a53-835769:            i960.               (line   49)
 * --no-fix-cortex-a8:                    i960.               (line   40)
 * --no-gc-sections:                      Options.            (line  931)
 * --no-insn32:                           Options.            (line 2055)
@@ -7267,7 +7277,7 @@ LD Index
 * --no-keep-memory:                      Options.            (line  980)
 * --no-leading-underscore:               Options.            (line 1645)
 * --no-merge-exidx-entries:              Options.            (line 2016)
-* --no-merge-exidx-entries <1>:          i960.               (line   49)
+* --no-merge-exidx-entries <1>:          i960.               (line   57)
 * --no-multi-toc:                        PowerPC64 ELF64.    (line   74)
 * --no-omagic:                           Options.            (line  448)
 * --no-opd-optimize:                     PowerPC64 ELF64.    (line   48)
@@ -7524,6 +7534,7 @@ LD Index
                                                              (line   19)
 * constructors, arranging in link:       Output Section Keywords.
                                                              (line   19)
+* Cortex-A53 erratum 835769 workaround:  i960.               (line   49)
 * Cortex-A8 erratum workaround:          i960.               (line   40)
 * crash of linker:                       Bug Criteria.       (line    9)
 * CREATE_OBJECT_SYMBOLS:                 Output Section Keywords.
@@ -8022,28 +8033,28 @@ Node: Implicit Linker Scripts211171
 Node: Machine Dependent211946
 Node: H8/300212984
 Node: i960215047
-Node: M68HC11/68HC12217262
-Node: ARM218707
-Node: HPPA ELF32226687
-Node: M68K228310
-Node: MIPS229219
-Node: MMIX229743
-Node: MSP430230908
-Node: PowerPC ELF32231956
-Node: PowerPC64 ELF64234786
-Node: SPU ELF240940
-Node: TI COFF243574
-Node: WIN32244100
-Node: Xtensa264229
-Node: BFD267195
-Node: BFD outline268653
-Node: BFD information loss269941
-Node: Canonical format272467
-Node: Reporting Bugs276829
-Node: Bug Criteria277523
-Node: Bug Reporting278222
-Node: MRI285260
-Node: GNU Free Documentation License289902
-Node: LD Index315038
+Node: M68HC11/68HC12217630
+Node: ARM219075
+Node: HPPA ELF32227055
+Node: M68K228678
+Node: MIPS229587
+Node: MMIX230111
+Node: MSP430231276
+Node: PowerPC ELF32232324
+Node: PowerPC64 ELF64235154
+Node: SPU ELF241308
+Node: TI COFF243942
+Node: WIN32244468
+Node: Xtensa264597
+Node: BFD267563
+Node: BFD outline269021
+Node: BFD information loss270309
+Node: Canonical format272835
+Node: Reporting Bugs277197
+Node: Bug Criteria277891
+Node: Bug Reporting278590
+Node: MRI285628
+Node: GNU Free Documentation License290270
+Node: LD Index315406
 
 End Tag Table
