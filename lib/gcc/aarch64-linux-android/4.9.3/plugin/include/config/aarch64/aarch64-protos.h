@@ -180,6 +180,7 @@ bool aarch64_cannot_change_mode_class (enum machine_mode,
 				       enum reg_class);
 enum aarch64_symbol_type
 aarch64_classify_symbolic_expression (rtx, enum aarch64_symbol_context);
+bool aarch64_const_vec_all_same_int_p (rtx, HOST_WIDE_INT);
 bool aarch64_constant_address_p (rtx);
 bool aarch64_expand_movmem (rtx *);
 bool aarch64_float_const_zero_rtx_p (rtx);
@@ -215,7 +216,7 @@ bool aarch64_uimm12_shift (HOST_WIDE_INT);
 const char *aarch64_output_casesi (rtx *);
 const char *aarch64_rewrite_selected_cpu (const char *name);
 
-enum aarch64_symbol_type aarch64_classify_symbol (rtx,
+enum aarch64_symbol_type aarch64_classify_symbol (rtx, rtx,
 						  enum aarch64_symbol_context);
 enum aarch64_symbol_type aarch64_classify_tls_symbol (rtx);
 enum reg_class aarch64_regno_regclass (unsigned);
@@ -253,7 +254,6 @@ void aarch64_print_operand_address (FILE *, rtx);
 /* Initialize builtins for SIMD intrinsics.  */
 void init_aarch64_simd_builtins (void);
 
-void aarch64_simd_const_bounds (rtx, HOST_WIDE_INT, HOST_WIDE_INT);
 void aarch64_simd_disambiguate_copy (rtx *, rtx *, rtx *, unsigned int);
 
 /* Emit code to place a AdvSIMD pair result in memory locations (with equal

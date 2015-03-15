@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "OBJCOPY 1"
-.TH OBJCOPY 1 "2014-10-24" "binutils-2.24.0" "GNU Development Tools"
+.TH OBJCOPY 1 "2014-12-23" "binutils-2.25" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -179,6 +179,7 @@ objcopy [\fB\-F\fR \fIbfdname\fR|\fB\-\-target=\fR\fIbfdname\fR]
         [\fB\-\-change\-warnings\fR] [\fB\-\-no\-change\-warnings\fR]
         [\fB\-\-set\-section\-flags\fR \fIsectionpattern\fR=\fIflags\fR]
         [\fB\-\-add\-section\fR \fIsectionname\fR=\fIfilename\fR]
+        [\fB\-\-dump\-section\fR \fIsectionname\fR=\fIfilename\fR]
         [\fB\-\-rename\-section\fR \fIoldname\fR=\fInewname\fR[,\fIflags\fR]]
         [\fB\-\-long\-section\-names\fR {enable,disable,keep}]
         [\fB\-\-change\-leading\-char\fR] [\fB\-\-remove\-leading\-char\fR]
@@ -630,6 +631,17 @@ Add a new section named \fIsectionname\fR while copying the file.  The
 contents of the new section are taken from the file \fIfilename\fR.  The
 size of the section will be the size of the file.  This option only
 works on file formats which can support sections with arbitrary names.
+Note \- it may be necessary to use the \fB\-\-set\-section\-flags\fR
+option to set the attributes of the newly created section.
+.IP "\fB\-\-dump\-section\fR \fIsectionname\fR\fB=\fR\fIfilename\fR" 4
+.IX Item "--dump-section sectionname=filename"
+Place the contents of section named \fIsectionname\fR into the file
+\&\fIfilename\fR, overwriting any contents that may have been there
+previously.  This option is the inverse of \fB\-\-add\-section\fR.
+This option is similar to the \fB\-\-only\-section\fR option except
+that it does not create a formatted file, it just dumps the contents
+as raw binary data, without applying any relocations.  The option can
+be specified more than once.
 .IP "\fB\-\-rename\-section\fR \fIoldname\fR\fB=\fR\fInewname\fR\fB[,\fR\fIflags\fR\fB]\fR" 4
 .IX Item "--rename-section oldname=newname[,flags]"
 Rename a section from \fIoldname\fR to \fInewname\fR, optionally
@@ -1011,7 +1023,7 @@ with a backslash.  The \fIfile\fR may itself contain additional
 \&\fIld\fR\|(1), \fIobjdump\fR\|(1), and the Info entries for \fIbinutils\fR.
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
-Copyright (c) 1991\-2013 Free Software Foundation, Inc.
+Copyright (c) 1991\-2014 Free Software Foundation, Inc.
 .PP
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the \s-1GNU\s0 Free Documentation License, Version 1.3

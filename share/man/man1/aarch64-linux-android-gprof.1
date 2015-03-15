@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GPROF 1"
-.TH GPROF 1 "2014-10-24" "binutils-2.24.0" "GNU"
+.TH GPROF 1 "2014-12-23" "binutils-2.25" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -152,12 +152,13 @@ gprof [ \-[abcDhilLrsTvwxyz] ] [ \-[ACeEfFJnNOpPqQZ][\fIname\fR] ]
  [ \-\-debug[=\fIlevel\fR] ] [ \-\-function\-ordering ] 
  [ \-\-file\-ordering \fImap_file\fR ] [ \-\-directory\-path=\fIdirs\fR ]
  [ \-\-display\-unused\-functions ] [ \-\-file\-format=\fIname\fR ]
- [ \-\-file\-info ] [ \-\-help ] [ \-\-line ] [ \-\-min\-count=\fIn\fR ]
- [ \-\-no\-static ] [ \-\-print\-path ] [ \-\-separate\-files ]
- [ \-\-static\-call\-graph ] [ \-\-sum ] [ \-\-table\-length=\fIlen\fR ]
- [ \-\-traditional ] [ \-\-version ] [ \-\-width=\fIn\fR ]
- [ \-\-ignore\-non\-functions ] [ \-\-demangle[=\fI\s-1STYLE\s0\fR] ]
- [ \-\-no\-demangle ] [\-\-external\-symbol\-table=name] 
+ [ \-\-file\-info ] [ \-\-help ] [ \-\-line ] [ \-\-inline\-file\-names ]
+ [ \-\-min\-count=\fIn\fR ] [ \-\-no\-static ] [ \-\-print\-path ]
+ [ \-\-separate\-files ] [ \-\-static\-call\-graph ] [ \-\-sum ]
+ [ \-\-table\-length=\fIlen\fR ] [ \-\-traditional ] [ \-\-version ]
+ [ \-\-width=\fIn\fR ] [ \-\-ignore\-non\-functions ]
+ [ \-\-demangle[=\fI\s-1STYLE\s0\fR] ] [ \-\-no\-demangle ]
+ [\-\-external\-symbol\-table=name]
  [ \fIimage-file\fR ] [ \fIprofile-file\fR ... ]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
@@ -551,6 +552,12 @@ While line-by-line profiling can help isolate where in a large function
 a program is spending its time, it also significantly increases
 the running time of \f(CW\*(C`gprof\*(C'\fR, and magnifies statistical
 inaccuracies.
+.ie n .IP """\-\-inline\-file\-names""" 4
+.el .IP "\f(CW\-\-inline\-file\-names\fR" 4
+.IX Item "--inline-file-names"
+This option causes \f(CW\*(C`gprof\*(C'\fR to print the source file after each
+symbol in both the flat profile and the call graph. The full path to the
+file is printed if used with the \fB\-L\fR option.
 .ie n .IP """\-m \f(CInum\f(CW""" 4
 .el .IP "\f(CW\-m \f(CInum\f(CW\fR" 4
 .IX Item "-m num"
@@ -755,8 +762,7 @@ Proceedings of the \s-1SIGPLAN \s0'82 Symposium on Compiler Construction,
 \&\s-1SIGPLAN\s0 Notices, Vol. 17, No  6, pp. 120\-126, June 1982.
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
-Copyright (c) 1988, 1992, 1997, 1998, 1999, 2000, 2001, 2003,
-2007, 2008, 2009 Free Software Foundation, Inc.
+Copyright (c) 1988\-2014 Free Software Foundation, Inc.
 .PP
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the \s-1GNU\s0 Free Documentation License, Version 1.3

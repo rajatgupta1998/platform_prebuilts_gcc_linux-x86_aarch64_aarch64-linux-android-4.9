@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2014.11/build/objdir/../build/../gcc/gcc-linaro-4.9-2014.11/gcc/config/aarch64/aarch64.md'.  */
+   from the machine description file '/mnt/jenkins/workspace/linaro-android_toolchain64-4.9-2015.03/build/objdir/../build/../gcc/gcc-linaro-4.9-2015.03/gcc/config/aarch64/aarch64.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
@@ -63,6 +63,19 @@ extern int aarch64_simd_struct_operand (rtx, enum machine_mode);
 extern int aarch64_simd_general_operand (rtx, enum machine_mode);
 extern int aarch64_simd_nonimmediate_operand (rtx, enum machine_mode);
 extern int aarch64_simd_imm_zero (rtx, enum machine_mode);
+extern int aarch64_simd_imm_minus_one (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_qi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_hi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_si (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_di (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_offset_qi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_offset_hi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_offset_si (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_offset_di (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_bitsize_qi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_bitsize_hi (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_bitsize_si (rtx, enum machine_mode);
+extern int aarch64_simd_shift_imm_bitsize_di (rtx, enum machine_mode);
 #endif /* HAVE_MACHINE_MODES */
 
 #define CONSTRAINT_NUM_DEFINED_P 1

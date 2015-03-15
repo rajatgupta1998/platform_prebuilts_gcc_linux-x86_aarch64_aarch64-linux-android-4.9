@@ -914,14 +914,6 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 #define PREFERRED_DEBUGGING_TYPE NO_DEBUG
 #endif
 
-#ifndef LARGEST_EXPONENT_IS_NORMAL
-#define LARGEST_EXPONENT_IS_NORMAL(SIZE) 0
-#endif
-
-#ifndef ROUND_TOWARDS_ZERO
-#define ROUND_TOWARDS_ZERO 0
-#endif
-
 #ifndef FLOAT_LIB_COMPARE_RETURNS_BOOL
 #define FLOAT_LIB_COMPARE_RETURNS_BOOL(MODE, COMPARISON) false
 #endif
@@ -1063,6 +1055,15 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #ifndef MOVE_MAX_PIECES
 #define MOVE_MAX_PIECES   MOVE_MAX
+#endif
+
+/* STORE_MAX_PIECES is the number of bytes at a time that we can
+   store efficiently.  Due to internal GCC limitations, this is
+   MOVE_MAX_PIECES limited by the number of bytes GCC can represent
+   for an immediate constant.  */
+
+#ifndef STORE_MAX_PIECES
+#define STORE_MAX_PIECES  MIN (MOVE_MAX_PIECES, 2 * sizeof (HOST_WIDE_INT))
 #endif
 
 #ifndef MAX_MOVE_MAX

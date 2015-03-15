@@ -448,6 +448,12 @@
 #endif
 
 
+/* Define if the assembler understands .module. */
+#ifndef USED_FOR_TARGET
+/* #undef HAVE_AS_DOT_MODULE */
+#endif
+
+
 /* Define if your assembler supports the -no-mul-bug-abort option. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_AS_NO_MUL_BUG_ABORT_OPTION */
@@ -1212,6 +1218,12 @@
 #endif
 
 
+/* Define if isl_schedule_constraints_compute_schedule exists. */
+#ifndef USED_FOR_TARGET
+#define HAVE_ISL_SCHED_CONSTRAINTS_COMPUTE_SCHEDULE 1
+#endif
+
+
 /* Define to 1 if you have the `kill' function. */
 #ifndef USED_FOR_TARGET
 #define HAVE_KILL 1
@@ -1665,7 +1677,7 @@
 
 /* Define if cloog is in use. */
 #ifndef USED_FOR_TARGET
-/* #undef HAVE_cloog */
+#define HAVE_cloog 1
 #endif
 
 

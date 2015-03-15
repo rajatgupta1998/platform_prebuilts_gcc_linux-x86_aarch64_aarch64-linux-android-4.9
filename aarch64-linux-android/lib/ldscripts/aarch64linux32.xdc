@@ -1,9 +1,13 @@
 /* Script for -pie -z combreloc: position independent executable, combine & sort relocs */
+/* Copyright (C) 2014 Free Software Foundation, Inc.
+   Copying and distribution of this script, with or without modification,
+   are permitted in any medium without royalty provided the copyright
+   notice and this notice are preserved.  */
 OUTPUT_FORMAT("elf32-littleaarch64", "elf32-bigaarch64",
 	      "elf32-littleaarch64")
 OUTPUT_ARCH(aarch64:ilp32)
 ENTRY(_start)
-SEARCH_DIR("/tmp/android-toolchain-eabi/aarch64-linux-android/lib32"); SEARCH_DIR("/tmp/android-toolchain-eabi/aarch64-linux-android/lib");
+SEARCH_DIR("/tmp/android-toolchain-eabi/aarch64-linux-android/libilp32"); SEARCH_DIR("/tmp/android-toolchain-eabi/aarch64-linux-android/lib");
 SECTIONS
 {
   /* Read-only sections, merged into text segment: */

@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2014-10-31" "gcc-4.9.3" "GNU"
+.TH GCC 1 "2015-03-11" "gcc-4.9.3" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -969,7 +969,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-m64  \-m31  \-mdebug  \-mno\-debug  \-mesa  \-mzarch 
 \&\-mtpf\-trace \-mno\-tpf\-trace  \-mfused\-madd  \-mno\-fused\-madd 
 \&\-mwarn\-framesize  \-mwarn\-dynamicstack  \-mstack\-size \-mstack\-guard 
-\&\-mhotpatch[=\fR\fIhalfwords\fR\fB] \-mno\-hotpatch\fR
+\&\-mhotpatch=\fR\fIhalfwords\fR\fB,\fR\fIhalfwords\fR
 .Sp
 \&\fIScore Options\fR
 \&\fB\-meb \-mel 
@@ -6752,6 +6752,15 @@ registers after writing to their lower 32\-bit half.
 .Sp
 Enabled for Alpha, AArch64 and x86 at levels \fB\-O2\fR,
 \&\fB\-O3\fR, \fB\-Os\fR.
+.IP "\fB\-fno\-lifetime\-dse\fR" 4
+.IX Item "-fno-lifetime-dse"
+In \*(C+ the value of an object is only affected by changes within its
+lifetime: when the constructor begins, the object has an indeterminate
+value, and any changes during the lifetime of the object are dead when
+the object is destroyed.  Normally dead store elimination will take
+advantage of this; if your code relies on the value of the object
+storage persisting beyond the lifetime of the object, you can use this
+flag to disable this optimization.
 .IP "\fB\-flive\-range\-shrinkage\fR" 4
 .IX Item "-flive-range-shrinkage"
 Attempt to decrease register pressure through register live range
@@ -9401,6 +9410,18 @@ If number of memory accesses in function being instrumented
 is greater or equal to this number, use callbacks instead of inline checks.
 E.g. to disable inline code use
 \&\fB\-\-param asan\-instrumentation\-with\-call\-threshold=0\fR.
+.IP "\fBmax-fsm-thread-path-insns\fR" 4
+.IX Item "max-fsm-thread-path-insns"
+Maximum number of instructions to copy when duplicating blocks on a
+finite state automaton jump thread path.  The default is 100.
+.IP "\fBmax-fsm-thread-length\fR" 4
+.IX Item "max-fsm-thread-length"
+Maximum number of basic blocks on a finite state automaton jump thread
+path.  The default is 10.
+.IP "\fBmax-fsm-thread-paths\fR" 4
+.IX Item "max-fsm-thread-paths"
+Maximum number of new jump thread paths to create for a finite state
+automaton.  The default is 50.
 .RE
 .RS 4
 .RE
@@ -10723,7 +10744,7 @@ architecture.
 .IX Item "-mtune=name"
 Specify the name of the target processor for which \s-1GCC\s0 should tune the
 performance of the code.  Permissible values for this option are:
-\&\fBgeneric\fR, \fBcortex\-a53\fR, \fBcortex\-a57\fR.
+\&\fBgeneric\fR, \fBcortex\-a53\fR, \fBcortex\-a57\fR, \fBthunderx\fR.
 .Sp
 Additionally, this option can specify that \s-1GCC\s0 should tune the performance
 of the code for a big.LITTLE system.  The only permissible value is
@@ -11439,11 +11460,15 @@ Permissible names are: \fBarm2\fR, \fBarm250\fR,
 \&\fBcortex\-a5\fR, \fBcortex\-a7\fR, \fBcortex\-a8\fR, \fBcortex\-a9\fR,
 \&\fBcortex\-a12\fR, \fBcortex\-a15\fR, \fBcortex\-a53\fR, \fBcortex\-a57\fR,
 \&\fBcortex\-r4\fR,
-\&\fBcortex\-r4f\fR, \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-m4\fR,
+\&\fBcortex\-r4f\fR, \fBcortex\-r5\fR, \fBcortex\-r7\fR, \fBcortex\-m7\fR,
+\&\fBcortex\-m4\fR,
 \&\fBcortex\-m3\fR,
 \&\fBcortex\-m1\fR,
 \&\fBcortex\-m0\fR,
 \&\fBcortex\-m0plus\fR,
+\&\fBcortex\-m1.small\-multiply\fR,
+\&\fBcortex\-m0.small\-multiply\fR,
+\&\fBcortex\-m0plus.small\-multiply\fR,
 \&\fBmarvell\-pj4\fR,
 \&\fBxscale\fR, \fBiwmmxt\fR, \fBiwmmxt2\fR, \fBep9312\fR,
 \&\fBfa526\fR, \fBfa626\fR,
@@ -11491,6 +11516,7 @@ available on the target.  Permissible names are: \fBvfp\fR, \fBvfpv3\fR,
 \&\fBvfpv3\-fp16\fR, \fBvfpv3\-d16\fR, \fBvfpv3\-d16\-fp16\fR, \fBvfpv3xd\fR,
 \&\fBvfpv3xd\-fp16\fR, \fBneon\fR, \fBneon\-fp16\fR, \fBvfpv4\fR,
 \&\fBvfpv4\-d16\fR, \fBfpv4\-sp\-d16\fR, \fBneon\-vfpv4\fR,
+\&\fBfpv5\-d16\fR, \fBfpv5\-sp\-d16\fR,
 \&\fBfp\-armv8\fR, \fBneon\-fp\-armv8\fR, and \fBcrypto\-neon\-fp\-armv8\fR.
 .Sp
 If \fB\-msoft\-float\fR is specified this specifies the format of
@@ -17845,12 +17871,13 @@ Supported values for \fIcpu_type\fR are \fB401\fR, \fB403\fR,
 \&\fBe6500\fR, \fBec603e\fR, \fBG3\fR, \fBG4\fR, \fBG5\fR,
 \&\fBtitan\fR, \fBpower3\fR, \fBpower4\fR, \fBpower5\fR, \fBpower5+\fR,
 \&\fBpower6\fR, \fBpower6x\fR, \fBpower7\fR, \fBpower8\fR, \fBpowerpc\fR,
-\&\fBpowerpc64\fR, and \fBrs64\fR.
+\&\fBpowerpc64\fR, \fBpowerpc64le\fR, and \fBrs64\fR.
 .Sp
-\&\fB\-mcpu=powerpc\fR, and \fB\-mcpu=powerpc64\fR specify pure 32\-bit
-PowerPC and 64\-bit PowerPC architecture machine
-types, with an appropriate, generic processor model assumed for
-scheduling purposes.
+\&\fB\-mcpu=powerpc\fR, \fB\-mcpu=powerpc64\fR, and
+\&\fB\-mcpu=powerpc64le\fR specify pure 32\-bit PowerPC (either
+endian), 64\-bit big endian PowerPC and 64\-bit little endian PowerPC
+architecture machine types, with an appropriate, generic processor
+model assumed for scheduling purposes.
 .Sp
 The other options specify a specific processor.  Code generated under
 those options runs best on that processor, and may not run at all on
@@ -19210,20 +19237,17 @@ values have to be exact powers of 2 and \fIstack-size\fR has to be greater than
 In order to be efficient the extra code makes the assumption that the stack starts
 at an address aligned to the value given by \fIstack-size\fR.
 The \fIstack-guard\fR option can only be used in conjunction with \fIstack-size\fR.
-.IP "\fB\-mhotpatch[=\fR\fIhalfwords\fR\fB]\fR" 4
-.IX Item "-mhotpatch[=halfwords]"
-.PD 0
-.IP "\fB\-mno\-hotpatch\fR" 4
-.IX Item "-mno-hotpatch"
-.PD
+.IP "\fB\-mhotpatch=\fR\fIpre-halfwords\fR\fB,\fR\fIpost-halfwords\fR" 4
+.IX Item "-mhotpatch=pre-halfwords,post-halfwords"
 If the hotpatch option is enabled, a \*(L"hot-patching\*(R" function
 prologue is generated for all functions in the compilation unit.
 The funtion label is prepended with the given number of two-byte
-Nop instructions (\fIhalfwords\fR, maximum 1000000) or 12 Nop
-instructions if no argument is present.  Functions with a
-hot-patching prologue are never inlined automatically, and a
-hot-patching prologue is never generated for functions functions
-that are explicitly inline.
+Nop instructions (\fIpre-halfwords\fR, maximum 1000000).  After
+the label, 2 * \fIpost-halfwords\fR bytes are appended, using the
+larges nop like instructions the architecture allows (maximum
+1000000).
+.Sp
+If both arguments are zero, hotpatching is disabled.
 .Sp
 This option can be overridden for individual functions with the
 \&\f(CW\*(C`hotpatch\*(C'\fR attribute.
@@ -19929,8 +19953,8 @@ the rules of the \s-1ABI.\s0
 Set the instruction set, register set, and instruction scheduling parameters
 for machine type \fIcpu_type\fR.  Supported values for \fIcpu_type\fR are
 \&\fBv7\fR, \fBcypress\fR, \fBv8\fR, \fBsupersparc\fR, \fBhypersparc\fR,
-\&\fBleon\fR, \fBleon3\fR, \fBsparclite\fR, \fBf930\fR, \fBf934\fR,
-\&\fBsparclite86x\fR, \fBsparclet\fR, \fBtsc701\fR, \fBv9\fR,
+\&\fBleon\fR, \fBleon3\fR, \fBleon3v7\fR, \fBsparclite\fR, \fBf930\fR,
+\&\fBf934\fR, \fBsparclite86x\fR, \fBsparclet\fR, \fBtsc701\fR, \fBv9\fR,
 \&\fBultrasparc\fR, \fBultrasparc3\fR, \fBniagara\fR, \fBniagara2\fR,
 \&\fBniagara3\fR and \fBniagara4\fR.
 .Sp
@@ -19948,7 +19972,7 @@ implementations.
 .RS 4
 .IP "v7" 4
 .IX Item "v7"
-cypress
+cypress, leon3v7
 .IP "v8" 4
 .IX Item "v8"
 supersparc, hypersparc, leon, leon3
@@ -20014,11 +20038,11 @@ option \fB\-mcpu=\fR\fIcpu_type\fR does.
 The same values for \fB\-mcpu=\fR\fIcpu_type\fR can be used for
 \&\fB\-mtune=\fR\fIcpu_type\fR, but the only useful values are those
 that select a particular \s-1CPU\s0 implementation.  Those are \fBcypress\fR,
-\&\fBsupersparc\fR, \fBhypersparc\fR, \fBleon\fR, \fBleon3\fR, \fBf930\fR,
-\&\fBf934\fR, \fBsparclite86x\fR, \fBtsc701\fR, \fBultrasparc\fR,
-\&\fBultrasparc3\fR, \fBniagara\fR, \fBniagara2\fR, \fBniagara3\fR and
-\&\fBniagara4\fR.  With native Solaris and GNU/Linux toolchains, \fBnative\fR
-can also be used.
+\&\fBsupersparc\fR, \fBhypersparc\fR, \fBleon\fR, \fBleon3\fR,
+\&\fBleon3v7\fR, \fBf930\fR, \fBf934\fR, \fBsparclite86x\fR, \fBtsc701\fR,
+\&\fBultrasparc\fR, \fBultrasparc3\fR, \fBniagara\fR, \fBniagara2\fR,
+\&\fBniagara3\fR and \fBniagara4\fR.  With native Solaris and GNU/Linux
+toolchains, \fBnative\fR can also be used.
 .IP "\fB\-mv8plus\fR" 4
 .IX Item "-mv8plus"
 .PD 0
