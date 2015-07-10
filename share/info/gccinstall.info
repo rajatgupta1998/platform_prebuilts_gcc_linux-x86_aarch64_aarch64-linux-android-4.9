@@ -1,7 +1,7 @@
 This is gccinstall.info, produced by makeinfo version 5.2 from
 install.texi.
 
-Copyright (C) 1988-2014 Free Software Foundation, Inc.
+Copyright (C) 1988-2015 Free Software Foundation, Inc.
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -24,7 +24,7 @@ START-INFO-DIR-ENTRY
 * gccinstall: (gccinstall).    Installing the GNU Compiler Collection.
 END-INFO-DIR-ENTRY
 
-   Copyright (C) 1988-2014 Free Software Foundation, Inc.
+   Copyright (C) 1988-2015 Free Software Foundation, Inc.
 
    Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -3090,11 +3090,22 @@ not support option '-mabi=ilp32'.
    To enable a workaround for the Cortex-A53 erratum number 835769 by
 default (for all CPUs regardless of -mcpu option given) at configure
 time use the '--enable-fix-cortex-a53-835769' option.  This will enable
-the fix by default and can be explicitly disabled during during
-compilation by passing the '-mno-fix-cortex-a53-835769' option.
-Conversely, '--disable-fix-cortex-a53-835769' will disable the
+the fix by default and can be explicitly disabled during compilation by
+passing the '-mno-fix-cortex-a53-835769' option.  Conversely,
+'--disable-fix-cortex-a53-835769' will disable the workaround by
+default.  The workaround is disabled by default if neither of
+'--enable-fix-cortex-a53-835769' or '--disable-fix-cortex-a53-835769' is
+given at configure time.
+
+   To enable a workaround for the Cortex-A53 erratum number 843419 by
+default (for all CPUs regardless of -mcpu option given) at configure
+time use the '--enable-fix-cortex-a53-843419' option.  This workaround
+is applied at link time.  Enabling the workaround will cause GCC to pass
+the relevant option to the linker.  It can be explicitly disabled during
+compilation by passing the '-mno-fix-cortex-a53-843419' option.
+Conversely, '--disable-fix-cortex-a53-843419' will disable the
 workaround by default.  The workaround is disabled by default if neither
-of '--enable-fix-cortex-a53-835769' or '--disable-fix-cortex-a53-835769'
+of '--enable-fix-cortex-a53-843419' or '--disable-fix-cortex-a53-843419'
 is given at configure time.
 
 *-ibm-aix*
@@ -4625,63 +4636,63 @@ Ref: ix86-x-solaris210131320
 Ref: ia64-x-linux132511
 Ref: ia64-x-hpux133281
 Ref: aarch64-x-x133836
-Ref: x-ibm-aix134616
-Ref: iq2000-x-elf141479
-Ref: lm32-x-elf141619
-Ref: lm32-x-uclinux141723
-Ref: m32c-x-elf141851
-Ref: m32r-x-elf141953
-Ref: m68k-x-x142055
-Ref: m68k-x-uclinux143093
-Ref: mep-x-elf143338
-Ref: microblaze-x-elf143448
-Ref: mips-x-x143567
-Ref: mips-sgi-irix5145961
-Ref: mips-sgi-irix6146041
-Ref: moxie-x-elf146228
-Ref: msp430-x-elf146275
-Ref: nds32le-x-elf146378
-Ref: nds32be-x-elf146450
-Ref: powerpc-x-x146519
-Ref: powerpc-x-darwin146724
-Ref: powerpc-x-elf147218
-Ref: powerpc-x-linux-gnu147303
-Ref: powerpc-x-netbsd147398
-Ref: powerpc-x-eabisim147486
-Ref: powerpc-x-eabi147612
-Ref: powerpcle-x-elf147688
-Ref: powerpcle-x-eabisim147780
-Ref: powerpcle-x-eabi147913
-Ref: rl78-x-elf147996
-Ref: rx-x-elf148102
-Ref: s390-x-linux148301
-Ref: s390x-x-linux148373
-Ref: s390x-ibm-tpf148460
-Ref: x-x-solaris2148591
-Ref: sparc-x-x153512
-Ref: sparc-sun-solaris2154014
-Ref: sparc-sun-solaris210156767
-Ref: sparc-x-linux157142
-Ref: sparc64-x-solaris2157367
-Ref: sparcv9-x-solaris2158020
-Ref: c6x-x-x158107
-Ref: tilegx-*-linux158199
-Ref: tilegxbe-*-linux158341
-Ref: tilepro-*-linux158484
-Ref: x-x-vxworks158605
-Ref: x86-64-x-x160128
-Ref: x86-64-x-solaris210160456
-Ref: xtensa-x-elf161118
-Ref: xtensa-x-linux161789
-Ref: windows162130
-Ref: x-x-cygwin164063
-Ref: x-x-interix164616
-Ref: x-x-mingw32164924
-Ref: older165150
-Ref: elf167267
-Node: Old167525
-Node: Configurations170658
-Node: GNU Free Documentation License174196
-Node: Concept Index199324
+Ref: x-ibm-aix135268
+Ref: iq2000-x-elf142131
+Ref: lm32-x-elf142271
+Ref: lm32-x-uclinux142375
+Ref: m32c-x-elf142503
+Ref: m32r-x-elf142605
+Ref: m68k-x-x142707
+Ref: m68k-x-uclinux143745
+Ref: mep-x-elf143990
+Ref: microblaze-x-elf144100
+Ref: mips-x-x144219
+Ref: mips-sgi-irix5146613
+Ref: mips-sgi-irix6146693
+Ref: moxie-x-elf146880
+Ref: msp430-x-elf146927
+Ref: nds32le-x-elf147030
+Ref: nds32be-x-elf147102
+Ref: powerpc-x-x147171
+Ref: powerpc-x-darwin147376
+Ref: powerpc-x-elf147870
+Ref: powerpc-x-linux-gnu147955
+Ref: powerpc-x-netbsd148050
+Ref: powerpc-x-eabisim148138
+Ref: powerpc-x-eabi148264
+Ref: powerpcle-x-elf148340
+Ref: powerpcle-x-eabisim148432
+Ref: powerpcle-x-eabi148565
+Ref: rl78-x-elf148648
+Ref: rx-x-elf148754
+Ref: s390-x-linux148953
+Ref: s390x-x-linux149025
+Ref: s390x-ibm-tpf149112
+Ref: x-x-solaris2149243
+Ref: sparc-x-x154164
+Ref: sparc-sun-solaris2154666
+Ref: sparc-sun-solaris210157419
+Ref: sparc-x-linux157794
+Ref: sparc64-x-solaris2158019
+Ref: sparcv9-x-solaris2158672
+Ref: c6x-x-x158759
+Ref: tilegx-*-linux158851
+Ref: tilegxbe-*-linux158993
+Ref: tilepro-*-linux159136
+Ref: x-x-vxworks159257
+Ref: x86-64-x-x160780
+Ref: x86-64-x-solaris210161108
+Ref: xtensa-x-elf161770
+Ref: xtensa-x-linux162441
+Ref: windows162782
+Ref: x-x-cygwin164715
+Ref: x-x-interix165268
+Ref: x-x-mingw32165576
+Ref: older165802
+Ref: elf167919
+Node: Old168177
+Node: Configurations171310
+Node: GNU Free Documentation License174848
+Node: Concept Index199976
 
 End Tag Table

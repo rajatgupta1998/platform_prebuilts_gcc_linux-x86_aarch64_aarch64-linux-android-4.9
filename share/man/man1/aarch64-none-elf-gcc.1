@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2015-04-13" "gcc-4.9.3" "GNU"
+.TH GCC 1 "2015-06-29" "gcc-4.9.4" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -501,6 +501,7 @@ in the following sections.
 \&\-momit\-leaf\-frame\-pointer  \-mno\-omit\-leaf\-frame\-pointer 
 \&\-mtls\-dialect=desc  \-mtls\-dialect=traditional 
 \&\-mfix\-cortex\-a53\-835769  \-mno\-fix\-cortex\-a53\-835769 
+\&\-mfix\-cortex\-a53\-843419  \-mno\-fix\-cortex\-a53\-843419 
 \&\-march=\fR\fIname\fR  \fB\-mcpu=\fR\fIname\fR  \fB\-mtune=\fR\fIname\fR
 .Sp
 \&\fIAdapteva Epiphany Options\fR
@@ -10722,6 +10723,15 @@ of \s-1TLS\s0 variables.
 Enable or disable the workaround for the \s-1ARM\s0 Cortex\-A53 erratum number 835769.
 This will involve inserting a \s-1NOP\s0 instruction between memory instructions and
 64\-bit integer multiply-accumulate instructions.
+.IP "\fB\-mfix\-cortex\-a53\-843419\fR" 4
+.IX Item "-mfix-cortex-a53-843419"
+.PD 0
+.IP "\fB\-mno\-fix\-cortex\-a53\-843419\fR" 4
+.IX Item "-mno-fix-cortex-a53-843419"
+.PD
+Enable or disable the workaround for the \s-1ARM\s0 Cortex\-A53 erratum number 843419.
+This erratum workaround is made at link time and this will only pass the
+corresponding flag to the linker.
 .IP "\fB\-march=\fR\fIname\fR" 4
 .IX Item "-march=name"
 Specify the name of the target architecture, optionally suffixed by one or
@@ -19179,13 +19189,13 @@ Print (or do not print) additional debug information when compiling.
 The default is to not print debug information.
 .IP "\fB\-march=\fR\fIcpu-type\fR" 4
 .IX Item "-march=cpu-type"
-Generate code that runs on \fIcpu-type\fR, which is the name of a system
-representing a certain processor type.  Possible values for
+Generate code that runs on \fIcpu-type\fR, which is the name of a
+system representing a certain processor type.  Possible values for
 \&\fIcpu-type\fR are \fBg5\fR, \fBg6\fR, \fBz900\fR, \fBz990\fR,
-\&\fBz9\-109\fR, \fBz9\-ec\fR and \fBz10\fR.
-When generating code using the instructions available on z/Architecture,
-the default is \fB\-march=z900\fR.  Otherwise, the default is
-\&\fB\-march=g5\fR.
+\&\fBz9\-109\fR, \fBz9\-ec\fR, \fBz10\fR, \fBz196\fR, and
+\&\fBzEC12\fR.  When generating code using the instructions available
+on z/Architecture, the default is \fB\-march=z900\fR.  Otherwise,
+the default is \fB\-march=g5\fR.
 .IP "\fB\-mtune=\fR\fIcpu-type\fR" 4
 .IX Item "-mtune=cpu-type"
 Tune to \fIcpu-type\fR everything applicable about the generated code,
@@ -21665,7 +21675,7 @@ See the Info entry for \fBgcc\fR, or
 for contributors to \s-1GCC.\s0
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
-Copyright (c) 1988\-2014 Free Software Foundation, Inc.
+Copyright (c) 1988\-2015 Free Software Foundation, Inc.
 .PP
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the \s-1GNU\s0 Free Documentation License, Version 1.3 or
